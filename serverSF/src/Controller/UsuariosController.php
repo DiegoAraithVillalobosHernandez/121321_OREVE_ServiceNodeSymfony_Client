@@ -15,7 +15,7 @@ class UsuariosController extends AbstractController{
 
     public function findAll(){
         $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery('SELECT u.id, u.nombre, u.appaterno, u.apmaterno, u.correo, u.keyword FROM App:Usuario u');
+        $query = $em->createQuery('SELECT u.id, u.nombre, u.apPaterno, u.apMaterno, u.correo, u.keyword FROM App:Usuario u');
         $listUsuarios = $query->getResult();
 
         $data = [
@@ -36,7 +36,7 @@ class UsuariosController extends AbstractController{
 
     public function findById($id){
         $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery('SELECT u.id, u.nombre, u.appaterno, u.apmaterno, u.correo, u.keyword FROM App:Usuario u WHERE u.id = :id');
+        $query = $em->createQuery('SELECT u.id, u.nombre, u.apPaterno, u.apMaterno, u.correo, u.keyword FROM App:Usuario u WHERE u.id = :id');
         $query->setParameter(':id', $id);
         $usuario = $query->getResult();
 
@@ -86,7 +86,7 @@ class UsuariosController extends AbstractController{
 
     public function updatePersonalInfo(Request $req, $id){
         $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery('UPDATE App:Usuario u SET u.nombre = :nom, u.appaterno = :appa, u.apmaterno = :apma WHERE u.id = :id');
+        $query = $em->createQuery('UPDATE App:Usuario u SET u.nombre = :nom, u.apPaterno = :appa, u.apMaterno = :apma WHERE u.id = :id');
 
         $nombre = $req->get('nombre', null);
         $ap_paterno = $req->get('ap_paterno', null);
@@ -121,7 +121,7 @@ class UsuariosController extends AbstractController{
         $keyword = $req->get('keyword', null);
 
         $query->setParameter(':email', $correo);
-        $query->setParameter(':key', $keyword);
+        $query->setParameter(':keyw', $keyword);
         $query->setParameter(':id', $id);
         $flag = $query->getResult();
 
@@ -142,7 +142,7 @@ class UsuariosController extends AbstractController{
 
     public function remove($id){
         $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery('DELETE FROM App:Usuario WHERE u.id = :id');
+        $query = $em->createQuery('DELETE FROM App:Usuario u WHERE u.id = :id');
         $query->setParameter(':id', $id);
         $flag = $query->getResult();
 
