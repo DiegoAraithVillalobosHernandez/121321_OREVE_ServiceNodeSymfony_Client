@@ -30,11 +30,11 @@ findByIdUsuario:
 
 #delete METHODS
 
-createAsistencia:
+removeAsistencia:
     path: /asistencia/remove/{id}
     controller: App\Controller\AsistenciasController::remove
 
-createUsuario:
+removeUsuario:
     path: /usuario/remove/{id}
     controller: App\Controller\UsuariosController::remove
 
@@ -42,12 +42,12 @@ createUsuario:
 
 updateAsistencia:
     path: /asistencia/update/{id}
-    controller: App\Controller\AsistenciasController::create
+    controller: App\Controller\AsistenciasController::update
 
 #extra METHODS
 
 countAsistencias:
-    path: /asistencia/count/{id}
+    path: /asistencia/count/{idevento}
     controller: App\Controller\AsistenciasController::countAsistencias
 
 updateInfoUsuario:

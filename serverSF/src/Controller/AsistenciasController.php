@@ -15,7 +15,7 @@ class AsistenciasController extends AbstractController{
 
     public function findAll(){
         $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery('SELECT a.id, a.idusuario, a.idevento FROM App:Asistencia a');
+        $query = $em->createQuery('SELECT a.id, a.idUsuario, a.idEvento FROM App:Asistencia a');
         $listAsistencias = $query->getResult();
 
         $data = [
@@ -36,7 +36,7 @@ class AsistenciasController extends AbstractController{
 
     public function findById($id){
         $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery('SELECT a.id, a.idusuario, a.idevento FROM App:Asistencia a WHERE a.id = :id');
+        $query = $em->createQuery('SELECT a.id, a.idUsuario, a.idEvento FROM App:Asistencia a WHERE a.id = :id');
         $query->setParameter(':id', $id);
         $asistencia = $query->getResult();
 
@@ -56,10 +56,10 @@ class AsistenciasController extends AbstractController{
         return new JsonResponse($data);
     }
 
-    public function countAsistencias($id_evento){
+    public function countAsistencias($idevento){
         $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery('SELECT COUNT(a.idevento) FROM App:Asistencia a WHERE a.idevento = :id_evento');
-        $query->setParameter(':id_evento', $id_evento);
+        $query = $em->createQuery('SELECT COUNT(a.idEvento) FROM App:Asistencia a WHERE a.idEvento = :idevento');
+        $query->setParameter(':idevento', $idevento);
         $asistencias = $query->getResult();
 
         $data = [
@@ -81,13 +81,13 @@ class AsistenciasController extends AbstractController{
     public function create(Request $req){
         $em = $this->getDoctrine()->getManager();
 
-        $id_usuario = $req->get('id_usuario', null);
-        $id_evento = $req->get('id_evento', null);
+        $idusuario = $req->get('idusuario', null);
+        $idevento = $req->get('idevento', null);
 
         $asistencia = new \App\Entity\Asistencia();
 
-        $asistencia->setIdUsuario($id_usuario);
-        $asistencia->setIdEvento($id_evento);
+        $asistencia->setIdUsuario($idusuario);
+        $asistencia->setIdEvento($idevento);
 
         $em->persist($asistencia);
         $em->flush();
@@ -102,13 +102,13 @@ class AsistenciasController extends AbstractController{
 
     public function update(Request $req, $id){
         $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery('UPDATE App:Asistencia a SET a.idusuario = :idus, a.idevento = :ideve WHERE a.id = :id');
+        $query = $em->createQuery('UPDATE App:Asistencia a SET a.idUsuario = :idus, a.idEvento = :ideve WHERE a.id = :id');
 
-        $id_usuario = $req->get('id_usuario', null);
-        $id_evento = $req->get('id_evento', null);
+        $idusuario = $req->get('idusuario', null);
+        $idevento = $req->get('idevento', null);
 
-        $query->setParameter(':idus', $id_usuario);
-        $query->setParameter(':ideve', $id_evento);
+        $query->setParameter(':idus', $idusuario);
+        $query->setParameter(':ideve', $idevento);
         $query->setParameter(':id', $id);
         $flag = $query->getResult();
 
@@ -129,7 +129,7 @@ class AsistenciasController extends AbstractController{
 
     public function remove($id){
         $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery('DELETE FROM App:Asistencia WHERE a.id = :id');
+        $query = $em->createQuery('DELETE FROM App:Asistencia a WHERE a.id = :id');
         $query->setParameter(':id', $id);
         $flag = $query->getResult();
 
