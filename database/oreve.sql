@@ -28,6 +28,7 @@ CREATE TABLE usuario(
 );
 
 CREATE TABLE asistencia(
+	id int AUTO_INCREMENT PRIMARY KEY NOT NULL,
 	id_usuario int REFERENCES usuario(id),
     id_evento int REFERENCES evento(id)
 );

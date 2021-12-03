@@ -1,0 +1,59 @@
+#findAll METHODS
+
+findAllAsistencias:
+    path: /asistencia
+    controller: App\Controller\AsistenciasController::findAll
+
+findAllUsuarios:
+    path: /usuario
+    controller: App\Controller\UsuariosController::findAll
+
+#create METHODS
+
+createAsistencia:
+    path: /asistencia/create
+    controller: App\Controller\AsistenciasController::create
+
+createUsuario:
+    path: /usuario/create
+    controller: App\Controller\UsuariosController::create
+
+#findById METHODS
+
+findByIdAsistencia:
+    path: /asistencia/{id}
+    controller: App\Controller\AsistenciasController::findById
+
+findByIdUsuario:
+    path: /usuario/{id}
+    controller: App\Controller\UsuariosController::findById
+
+#delete METHODS
+
+createAsistencia:
+    path: /asistencia/remove/{id}
+    controller: App\Controller\AsistenciasController::remove
+
+createUsuario:
+    path: /usuario/remove/{id}
+    controller: App\Controller\UsuariosController::remove
+
+#update METHODS
+
+updateAsistencia:
+    path: /asistencia/update/{id}
+    controller: App\Controller\AsistenciasController::create
+
+#extra METHODS
+
+countAsistencias:
+    path: /asistencia/count/{id}
+    controller: App\Controller\AsistenciasController::countAsistencias
+
+updateInfoUsuario:
+    path: /usuario/update/info/{id}
+    controller: App\Controller\UsuariosController::updatePersonalInfo
+
+updateUserUsuario:
+    path: /usuario/update/user/{id}
+    controller: App\Controller\UsuariosController::updateUserInfo
