@@ -1,7 +1,7 @@
 CREATE DATABASE oreve;
 -- USE oreve;
 
-CREATE TABLE eventos(
+CREATE TABLE evento(
 	id int AUTO_INCREMENT NOT NULL,
     nombre varchar(250) NOT NULL,
     ubicacion varchar(300) NOT NULL,
@@ -16,7 +16,7 @@ CREATE TABLE eventos(
     PRIMARY KEY (id)
 );
 
-CREATE TABLE usuarios(
+CREATE TABLE usuario(
 	id int AUTO_INCREMENT NOT NULL,
     nombre varchar(150) NOT NULL,
     ap_paterno varchar(50) NOT NULL,
@@ -25,4 +25,9 @@ CREATE TABLE usuarios(
     keyword varchar(15) NOT NULL,
     PRIMARY KEY (id),
     UNIQUE KEY (correo)
+);
+
+CREATE TABLE asistencia(
+	id_usuario int REFERENCES usuario(id),
+    id_evento int REFERENCES evento(id)
 );
