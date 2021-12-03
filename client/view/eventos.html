@@ -28,6 +28,14 @@
                 </li>
             </ul>
         </div>
+        <!---Agregamos un boton de acerca de nosotros con una vista que explique el por que de la app como extra?-->
+        <div class="col-1">
+            <a href="#" class="text-light" >
+            <p class="fas fa-info text-light" >
+                
+            </p>
+            </a>
+        </div>
     </nav>
 
     <div class="row">
@@ -87,7 +95,8 @@
                                 <label>Participantes: <span id="event_part">0</span></label>
                             </div>
                             <div class="col-6 text-right">
-                                <button class="btn btn-danger"><span class="fas fa-trash"></span>
+                                <button class="btn btn-danger" data-target="#eliminate" data-toggle="modal"><span
+                                        class="fas fa-trash"></span>
                                     Eliminar</span></button>
                                 <button class="btn btn-primary" disabled><span class="fas fa-images"></span> Agregar
                                     Imagenes</span></button>
@@ -99,8 +108,47 @@
             </div>
         </div>
     </div>
+    <!---MODAL ELIMINAR-->
+    <div>
+        <!--Modal Info-->
+        <div class="modal fade" id="eliminate" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content p-3">
+                    <h2>¿Esta seguro que desea eliminar el evento? <span class="fas fa-leaf"></span></h2>
+                    <div class="row mt-3 mb-2">
+                        <div class="col-12">
 
-    <!--Modal Info-->
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label class="text-center">Confirme si desea eliminar el evento</label>
+                                <p class="text-secondary">
+                                    Pulse "Eliminar" para borrar definitivamente el evento de nuestra base de datos
+                                </p>
+
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="form-group">
+                                <div class="row">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"><span
+                                class="fas fa-ban"></span>
+                            Cancelar</button>
+                        <button type="button" class="btn btn-success"><span class="fas fa-trash"></span> Eiminar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--MODAL ELIMINAR FIN-->
+    <!--Modal CREAR EVENTO-->
     <div class="modal fade" id="create" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content p-3">
@@ -109,7 +157,8 @@
                     <div class="col-12">
                         <div class="form-group">
                             <label>Nombre <span class="text-danger">*</span></label>
-                            <input type="text" name="c_eve_name" id="c_eve_name" class="form-control" autocomplete="off" required>
+                            <input type="text" name="c_eve_name" id="c_eve_name" class="form-control" autocomplete="off"
+                                required>
                         </div>
                     </div>
                     <div class="col-6">
@@ -117,12 +166,14 @@
                             <label>Fecha de Inicio y Finalización <span class="text-danger">*</span></label>
                             <div class="row">
                                 <div class="col-6">
-                                    <input type="date" name="c_eve_date_start" id="c_eve_date_start" class="form-control" autocomplete="off" required>
+                                    <input type="date" name="c_eve_date_start" id="c_eve_date_start"
+                                        class="form-control" autocomplete="off" required>
                                 </div>
                                 <div class="col-6">
-                                    <input type="date" name="c_eve_date_end" id="c_eve_date_end" class="form-control" autocomplete="off" required>
+                                    <input type="date" name="c_eve_date_end" id="c_eve_date_end" class="form-control"
+                                        autocomplete="off" required>
                                 </div>
-                            </div>  
+                            </div>
                         </div>
                     </div>
                     <div class="col-6">
@@ -130,12 +181,14 @@
                             <label>Hora de Inicio y Finalización <span class="text-danger">*</span></label>
                             <div class="row">
                                 <div class="col-6">
-                                    <input type="time" name="c_eve_hr_start" id="c_eve_hr_start" class="form-control" autocomplete="off" required>
+                                    <input type="time" name="c_eve_hr_start" id="c_eve_hr_start" class="form-control"
+                                        autocomplete="off" required>
                                 </div>
                                 <div class="col-6">
-                                    <input type="time" name="c_eve_hr_end" id="c_eve_hr_end" class="form-control" autocomplete="off" required>
+                                    <input type="time" name="c_eve_hr_end" id="c_eve_hr_end" class="form-control"
+                                        autocomplete="off" required>
                                 </div>
-                            </div>  
+                            </div>
                         </div>
                     </div>
                     <div class="col-12">
@@ -143,41 +196,47 @@
                             <div class="row">
                                 <div class="col-6 form-group">
                                     <label>Calle <span class="text-danger">*</span></label>
-                                    <input type="text" name="c_eve_street" id="c_eve_street" class="form-control" autocomplete="off" required>
+                                    <input type="text" name="c_eve_street" id="c_eve_street" class="form-control"
+                                        autocomplete="off" required>
                                 </div>
                                 <div class="col-6 form-group">
                                     <label>Colonia <span class="text-danger">*</span></label>
-                                    <input type="text" name="c_eve_hometown" id="c_eve_hometown" class="form-control" autocomplete="off" required>
+                                    <input type="text" name="c_eve_hometown" id="c_eve_hometown" class="form-control"
+                                        autocomplete="off" required>
                                 </div>
                                 <div class="col-4 form-group">
                                     <label>Municipio <span class="text-danger">*</span></label>
-                                    <input type="text" name="c_eve_city" id="c_eve_city" class="form-control" autocomplete="off" required>
+                                    <input type="text" name="c_eve_city" id="c_eve_city" class="form-control"
+                                        autocomplete="off" required>
                                 </div>
                                 <div class="col-4 form-group">
                                     <label>Estado <span class="text-danger">*</span></label>
-                                    <input type="text" name="c_eve_state" id="c_eve_state" class="form-control" autocomplete="off" required>
+                                    <input type="text" name="c_eve_state" id="c_eve_state" class="form-control"
+                                        autocomplete="off" required>
                                 </div>
                                 <div class="col-4 form-group">
                                     <label>País <span class="text-danger">*</span></label>
-                                    <input type="text" name="c_eve_country" id="c_eve_country" class="form-control" autocomplete="off" required>
+                                    <input type="text" name="c_eve_country" id="c_eve_country" class="form-control"
+                                        autocomplete="off" required>
                                 </div>
-                            </div>  
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="text-right">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fas fa-ban"></span> Cancelar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fas fa-ban"></span>
+                        Cancelar</button>
                     <button type="button" class="btn btn-success"><span class="fas fa-plus"></span> Crear</button>
                 </div>
             </div>
         </div>
-
-        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-            crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
-            crossorigin="anonymous"></script>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+        crossorigin="anonymous"></script>
 
 </body>
 
