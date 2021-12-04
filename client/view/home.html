@@ -87,30 +87,45 @@
 
   <!--Modal Info-->
   <div class="modal fade" id="info" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content p-3">
         <h2>Información del Evento <span class="fas fa-leaf"></span></h2>
-        <div class="row mt-3 mb-2">
+        <div class="row mt-3 mb-3">
           <div class="col-6">
-            <label>Fecha de Inicio <br><span id="event_date_start">*</span></label>
+            <div class="row">
+              <div class="col-6">
+                <label>Fecha de Inicio <br><span id="event_date_start">*</span></label>
+              </div>
+              <div class="col-6">
+                <label>Fecha de Finalización <br><span id="event_date_end">*</span></label>
+              </div>
+              <div class="col-6">
+                <label>Hora de Inicio <br><span id="event_hr_start">*</span></label>
+              </div>
+              <div class="col-6">
+                <label>Hora de Finalización <br><span id="event_hr_end">*</span></label>
+              </div>
+              <div class="col-6">
+                <label>Estado <br><span id="event_state">*</span></label>
+              </div>
+              <div class="col-12">
+                <div class="form-group">
+                  <label>¿Deseas participar en este evento?</label><br>
+                  <button class="btn btn-success"><span class="fas fa-check"></span> Sí</button>
+                  <button class="btn btn-danger"><span class="fas fa-times"></span> No</button>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="col-6">
-            <label>Fecha de Finalización <br><span id="event_date_end">*</span></label>
-          </div>
-          <div class="col-6">
-            <label>Hora de Inicio <br><span id="event_hr_start">*</span></label>
-          </div>
-          <div class="col-6">
-            <label>Hora de Finalización <br><span id="event_hr_end">*</span></label>
-          </div>
-          <div class="col-6">
-            <label>Estado <br><span id="event_state">*</span></label>
-          </div>
-          <div class="col-12">
-            <label>Ubicación <br><span id="event_location">*</span></label>
-          </div>
-          <div id="event_map">
-
+            <label>Ubicación del evento</label>
+            <div class="mt-2"><div class="gmap_canvas">
+              <iframe width="368" height="500" id="gmap_canvas" 
+              src="https://maps.google.com/maps?q=Utez&t=&z=13&ie=UTF8&iwloc=&output=embed" 
+              frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+              <a href="https://123movies-org.net"></a><br>
+              <style>.gmap_canvas {overflow:hidden;background:none!important;height:300px;width:480px;}</style>
+            </div></div>
           </div>
         </div>
         <div class="text-right">

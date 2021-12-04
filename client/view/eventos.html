@@ -28,14 +28,6 @@
                 </li>
             </ul>
         </div>
-        <!---Agregamos un boton de acerca de nosotros con una vista que explique el por que de la app como extra?-->
-        <div class="col-1">
-            <a href="#" class="text-light" >
-            <p class="fas fa-info text-light" >
-                
-            </p>
-            </a>
-        </div>
     </nav>
 
     <div class="row">
@@ -95,12 +87,9 @@
                                 <label>Participantes: <span id="event_part">0</span></label>
                             </div>
                             <div class="col-6 text-right">
-                                <button class="btn btn-danger" data-target="#eliminate" data-toggle="modal"><span
-                                        class="fas fa-trash"></span>
-                                    Eliminar</span></button>
-                                <button class="btn btn-primary" disabled><span class="fas fa-images"></span> Agregar
-                                    Imagenes</span></button>
-                                <button class="btn btn-warning"><span class="fas fa-edit"></span> Modificar</button>
+                                <button class="btn btn-danger" data-target="#remove" data-toggle="modal"><span class="fas fa-trash"></span> Eliminar</span></button>
+                                <button class="btn btn-primary" disabled><span class="fas fa-images"></span> Agregar Imagenes</span></button>
+                                <button class="btn btn-warning" data-target="#update" data-toggle="modal"><span class="fas fa-edit"></span> Modificar</button>
                             </div>
                         </div>
                     </div>
@@ -111,43 +100,107 @@
     <!---MODAL ELIMINAR-->
     <div>
         <!--Modal Info-->
-        <div class="modal fade" id="eliminate" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" id="remove" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content p-3">
-                    <h2>¿Esta seguro que desea eliminar el evento? <span class="fas fa-leaf"></span></h2>
+                    <h2>Eliminar Evento <span class="fas fa-leaf"></span></h2>
+                    <input type="text" name="r_eve_id" id="r_eve_id">
                     <div class="row mt-3 mb-2">
                         <div class="col-12">
-
-                        </div>
-                        <div class="col-6">
                             <div class="form-group">
-                                <label class="text-center">Confirme si desea eliminar el evento</label>
-                                <p class="text-secondary">
-                                    Pulse "Eliminar" para borrar definitivamente el evento de nuestra base de datos
+                                <label class="text-center">¿Está seguro que desea eliminar este evento?</label>
+                                <p class="text-muted">
+                                    <strong>NOTA: </strong> Si pulsa eliminar, el evento se borrará de manera permanente.
                                 </p>
-
-                            </div>
-                        </div>
-
-                        <div class="col-12">
-                            <div class="form-group">
-                                <div class="row">
-
-                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="text-right">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal"><span
-                                class="fas fa-ban"></span>
-                            Cancelar</button>
-                        <button type="button" class="btn btn-success"><span class="fas fa-trash"></span> Eiminar</button>
+                        <button type="button" class="btn btn-danger"><span class="fas fa-trash"></span> Eiminar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><span class="fas fa-ban"></span> Cancelar</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <!--MODAL ELIMINAR FIN-->
+
+    <!--Modal MODIFICAR EVENTO-->
+    <div class="modal fade" id="update" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content p-3">
+                <h2>Modificar Evento <span class="fas fa-leaf"></span></h2>
+                <input type="hidden" name="u_eve_id" id="u_eve_id">
+                <div class="row mt-3 mb-2">
+                    <div class="col-8">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label>Nombre <span class="text-danger">*</span></label>
+                                    <input type="text" name="u_eve_name" id="u_eve_name" class="form-control" autocomplete="off"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label>Fecha de Inicio y Finalización <span class="text-danger">*</span></label>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <input type="date" name="u_eve_date_start" id="u_eve_date_start"
+                                                class="form-control" autocomplete="off" required>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="date" name="u_eve_date_end" id="u_eve_date_end" class="form-control"
+                                                autocomplete="off" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label>Hora de Inicio y Finalización <span class="text-danger">*</span></label>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <input type="time" name="u_eve_hr_start" id="u_eve_hr_start" class="form-control"
+                                                autocomplete="off" required>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="time" name="u_eve_hr_end" id="u_eve_hr_end" class="form-control"
+                                                autocomplete="off" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label>Ubicación <span class="text-danger">*</span></label>
+                                    <input type="text" name="u_eve_location" id="u_eve_location" class="form-control" autocomplete="off" required placeholder="Ej. calle, municipio, estado, país">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4 form-group">
+                        <strong>Ubicación del evento</strong>
+                        <div class="mt-2"><div class="gmap_canvas">
+                            <iframe width="350" height="500" id="gmap_canvas" 
+                            src="https://maps.google.com/maps?q=Utez&t=&z=13&ie=UTF8&iwloc=&output=embed" 
+                            frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                            <a href="https://123movies-org.net"></a><br>
+                            <style>.gmap_canvas {overflow:hidden;background:none!important;height:300px;width:480px;}</style>
+                        </div></div>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fas fa-ban"></span>
+                        Cancelar</button>
+                    <button type="button" class="btn btn-success"><span class="fas fa-save"></span> Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
     <!--Modal CREAR EVENTO-->
     <div class="modal fade" id="create" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -193,32 +246,9 @@
                     </div>
                     <div class="col-12">
                         <div class="form-group">
-                            <div class="row">
-                                <div class="col-6 form-group">
-                                    <label>Calle <span class="text-danger">*</span></label>
-                                    <input type="text" name="c_eve_street" id="c_eve_street" class="form-control"
-                                        autocomplete="off" required>
-                                </div>
-                                <div class="col-6 form-group">
-                                    <label>Colonia <span class="text-danger">*</span></label>
-                                    <input type="text" name="c_eve_hometown" id="c_eve_hometown" class="form-control"
-                                        autocomplete="off" required>
-                                </div>
-                                <div class="col-4 form-group">
-                                    <label>Municipio <span class="text-danger">*</span></label>
-                                    <input type="text" name="c_eve_city" id="c_eve_city" class="form-control"
-                                        autocomplete="off" required>
-                                </div>
-                                <div class="col-4 form-group">
-                                    <label>Estado <span class="text-danger">*</span></label>
-                                    <input type="text" name="c_eve_state" id="c_eve_state" class="form-control"
-                                        autocomplete="off" required>
-                                </div>
-                                <div class="col-4 form-group">
-                                    <label>País <span class="text-danger">*</span></label>
-                                    <input type="text" name="c_eve_country" id="c_eve_country" class="form-control"
-                                        autocomplete="off" required>
-                                </div>
+                            <div class="form-group">
+                                <label>Ubicación <span class="text-danger">*</span></label>
+                                <input type="text" name="u_eve_location" id="u_eve_location" class="form-control" autocomplete="off" required placeholder="Ej. calle, municipio, estado, país">
                             </div>
                         </div>
                     </div>
@@ -230,7 +260,8 @@
                 </div>
             </div>
         </div>
-    </div>
+
+        
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
