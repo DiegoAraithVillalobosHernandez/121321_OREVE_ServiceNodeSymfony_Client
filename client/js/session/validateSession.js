@@ -7,5 +7,7 @@ if(user === ""){
 }
 
 const logout = () => {
+    sessionStorage.setItem('user', "");
     sessionStorage.setItem('msg', 0);
+    window.location.replace('../index.html');
 }
