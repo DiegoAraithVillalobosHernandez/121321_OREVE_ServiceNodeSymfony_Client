@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
+  
+<script src="../js/session/validateSession.js"></script>
 
 <head>
   <meta charset="UTF-8">
@@ -46,11 +48,11 @@
           <hr>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-danger" href="../index.html"><span class="fas fa-sign-out-alt"></span> Cerrar
+          <a class="nav-link text-danger" href="../index.html" onclick="logout()"><span class="fas fa-sign-out-alt"></span> Cerrar
             Sesión</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-dark">example@mail.com</span></a>
+          <a class="nav-link text-dark"><span id="user"></span></a>
         </li>
       </ul>
     </div>
@@ -134,7 +136,7 @@
       </div>
     </div>
 
-
+    <script src="../js/session/getSession.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
       crossorigin="anonymous"></script>

@@ -21,10 +21,12 @@ CREATE TABLE usuario(
     nombre varchar(150) NOT NULL,
     ap_paterno varchar(50) NOT NULL,
     ap_materno varchar(50),
+    usuario varchar(100) NOT NULL,
     correo varchar(200) NOT NULL,
     keyword varchar(15) NOT NULL,
     PRIMARY KEY (id),
-    UNIQUE KEY (correo)
+    UNIQUE KEY (correo),
+    UNIQUE KEY (user)
 );
 
 CREATE TABLE asistencia(
