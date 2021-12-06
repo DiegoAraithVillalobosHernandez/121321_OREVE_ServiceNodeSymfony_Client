@@ -11,5 +11,6 @@ if(state == 0 || state === null){
 const login = () => {
     let user = document.getElementById('user_email').value;
     sessionStorage.setItem('user', user);
+    sessionStorage.setItem('userId', 1);
     window.location.replace('./view/home.html');
 }

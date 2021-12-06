@@ -26,7 +26,7 @@ CREATE TABLE usuario(
     keyword varchar(15) NOT NULL,
     PRIMARY KEY (id),
     UNIQUE KEY (correo),
-    UNIQUE KEY (user)
+    UNIQUE KEY (usuario)
 );
 
 CREATE TABLE asistencia(

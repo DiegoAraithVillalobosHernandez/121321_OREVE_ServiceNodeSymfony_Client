@@ -2,7 +2,7 @@ module.exports= {
     database:{
         host: "localhost",
         user: "root",
-        password: "",
+        password: "ayad2923",
         dateStrings: true,
         database: "oreve"
     }

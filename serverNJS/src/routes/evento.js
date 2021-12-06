@@ -20,6 +20,24 @@ router.get('/', async (req, res) => { // GetAll
 
 });
 
+router.get('/mine/:id', async (req, res) => { // GetEventsByUser
+    const { id } = req.params;
+    let listEventos = await pool.query('SELECT * FROM evento WHERE creador = ?', [id]);
+
+    if (listEventos.length > 0) {
+        res.json({
+            status: 200,
+            message: "Se han obtenidos los registros de Eventos",
+            listEventos: listEventos
+        })
+    } else {
+        res.json({
+            status: 200,
+            message: "No hay registros de Eventos",
+        })
+    }
+});
+
 router.get('/:id', async (req, res) => { // GetById
     const { id } = req.params;
     let evento = await pool.query('SELECT * FROM evento WHERE id = ?', [id]);
