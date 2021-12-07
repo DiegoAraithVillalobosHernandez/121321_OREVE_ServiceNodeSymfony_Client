@@ -5,6 +5,7 @@ document.getElementById('u_usr_apma').disabled = true;
 document.getElementById('btn_disc_usr_info').disabled = true;
 document.getElementById('btn_save_usr_info').disabled = true;
 
+document.getElementById('u_usr_usr').disabled = true;
 document.getElementById('u_usr_email').disabled = true;
 document.getElementById('u_usr_password').disabled = true;
 document.getElementById('u_usr_conf_password').disabled = true;
@@ -25,6 +26,7 @@ const editPersonalData = () => {
 }
 
 const editUserData = () => {
+    document.getElementById('u_usr_usr').disabled = false;
     document.getElementById('u_usr_email').disabled = false;
     document.getElementById('u_usr_password').disabled = false;
     document.getElementById('u_usr_conf_password').disabled = false;
@@ -44,6 +46,7 @@ const infoDiscard = () => {
 }
 
 const userDiscard = () => {
+    document.getElementById('u_usr_usr').disabled = true;
     document.getElementById('u_usr_email').disabled = true;
     document.getElementById('u_usr_password').disabled = true;
     document.getElementById('u_usr_conf_password').disabled = true;

@@ -19,6 +19,13 @@ if (message === null || message === "") {
         sessionStorage.setItem('message', "");
 }
 
+const findIdByUserOrEmail = async(user_email) => {
+    return await $.ajax({
+        type: 'GET',
+        url: url2 + '/usuario/id/' + user_email
+    }).done(res => res);
+}
+
 const login = async () => {
     let user_email = document.getElementById('user_email').value;
     sessionStorage.setItem('user_email', user_email);
