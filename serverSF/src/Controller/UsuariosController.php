@@ -15,7 +15,7 @@ class UsuariosController extends AbstractController{
 
     public function findAll(){
         $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery('SELECT u.id, u.nombre, u.apPaterno, u.apMaterno, u.correo, u.keyword FROM App:Usuario u');
+        $query = $em->createQuery('SELECT u.id, u.nombre, u.apPaterno, u.apMaterno, u.usuario, u.correo, u.keyword FROM App:Usuario u');
         $listUsuarios = $query->getResult();
 
         $data = [
@@ -36,7 +36,7 @@ class UsuariosController extends AbstractController{
 
     public function findById($id){
         $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery('SELECT u.id, u.nombre, u.apPaterno, u.apMaterno, u.correo, u.keyword FROM App:Usuario u WHERE u.id = :id');
+        $query = $em->createQuery('SELECT u.id, u.nombre, u.apPaterno, u.apMaterno, u.usuario, u.correo, u.keyword FROM App:Usuario u WHERE u.id = :id');
         $query->setParameter(':id', $id);
         $usuario = $query->getResult();
 
@@ -62,6 +62,7 @@ class UsuariosController extends AbstractController{
         $nombre = $req->get('nombre', null);
         $ap_paterno = $req->get('ap_paterno', null);
         $ap_materno = $req->get('ap_materno', null);
+        $usuario = $req->get('usuario', null);
         $correo = $req->get('correo', null);
         $keyword = $req->get('keyword', null);
 
@@ -70,6 +71,7 @@ class UsuariosController extends AbstractController{
         $usuario->setNombre($nombre);
         $usuario->setApPaterno($ap_paterno);
         $usuario->setApMaterno($ap_materno);
+        $usuario->setUsuario($usuario);
         $usuario->setCorreo($correo);
         $usuario->setKeyword($keyword);
 
@@ -115,11 +117,13 @@ class UsuariosController extends AbstractController{
 
     public function updateUserInfo(Request $req, $id){
         $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery('UPDATE App:Usuario u SET u.correo = :email, u.keyword = :keyw WHERE u.id = :id');
+        $query = $em->createQuery('UPDATE App:Usuario u SET u.usuario = :user, u.correo = :email, u.keyword = :keyw WHERE u.id = :id');
 
+        $usuario = $req->get('usuario', null);
         $correo = $req->get('correo', null);
         $keyword = $req->get('keyword', null);
 
+        $query->setParameter(':user', $usuario);
         $query->setParameter(':email', $correo);
         $query->setParameter(':keyw', $keyword);
         $query->setParameter(':id', $id);
