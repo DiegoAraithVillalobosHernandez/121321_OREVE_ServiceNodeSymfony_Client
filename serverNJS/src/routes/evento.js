@@ -55,97 +55,108 @@ router.get('/:id', async (req, res) => { // GetById
     }
 });
 
-router.post('/create', async (req, res) => { // Create
-    const { nombre, calle, estado, municipio, hora_inicio, hora_fin,
+router.post('/create', async (req, res) => { 
+    const { nombre, ubicacion, hora_inicio, hora_fin,
         fecha_inicio, fecha_fin, descripcion, creador } = req.body;
-    let ubicacion = `${calle} ${estado}, ${municipio}`;
     const evento = {
         nombre, ubicacion, creador,
         hora_inicio, hora_fin, fecha_inicio, fecha_fin,
         descripcion
     };
 
-    // ingresar fechas actuales añadir = min="2016-01-01"
-    // faltan datos usarlo como required
-    console.log(compareDate(fecha_fin, fecha_inicio));
-    if (compareDate(fecha_fin, fecha_inicio)) {
-        if (parseFloat(hora_fin) > parseFloat(hora_inicio)) {
-            let flag = await pool.query('INSERT INTO evento SET ?', [evento]);
-
-            if (flag) {
-                res.json({
-                    status: 200,
-                    message: "Se ha registrado correctamente el Evento",
-                    evento: evento
-                });
+    if (validateDate(fecha_inicio)) {
+        if (compareDate(fecha_fin, fecha_inicio)) {
+            if (compareTime(hora_fin, hora_inicio)) {
+                let flag = await pool.query('INSERT INTO evento SET ?', [evento]);
+                if (flag) {
+                    res.json({
+                        status: 200,
+                        message: "Se ha registrado correctamente el Evento",
+                        evento: evento
+                    });
+                } else {
+                    res.json({
+                        status: 400,
+                        message: "Error interno al registrar Evento",
+                        evento: evento
+                    });
+                }
             } else {
                 res.json({
-                    status: 400,
-                    message: "Error al registrar Evento, verifique los datos",
+                    status: 300,
+                    message: "La hora de fin es menor o igual a la hora de inicio",
                     evento: evento
                 });
             }
         } else {
             res.json({
-                status: 400,
-                message: "La hora de fin es menor a la hora de inicio, verifique los datos",
+                status: 300,
+                message: "La fecha de fin es menor a la fecha de inicio",
                 evento: evento
             });
         }
     } else {
         res.json({
-            status: 400,
-            message: "La fecha de fin es menor a la fecha de inicio, verifique los datos",
+            status: 300,
+            message: "La fecha de inicio esta vencida",
             evento: evento
         });
     }
+
 });
 
 router.post('/update/:id', async (req, res) => {
-    const { nombre, calle, estado, municipio, país, hora_inicio, hora_fin,
+    const { nombre, ubicacion, hora_inicio, hora_fin,
         fecha_inicio, fecha_fin, descripcion, creador } = req.body;
-    let ubicacion = `${calle} ${estado}, ${municipio}`;
     const { id } = req.params;
     const evento = {
         nombre, ubicacion,
         hora_inicio, hora_fin, fecha_inicio, fecha_fin,
         descripcion
     };
-    if (isTheCreator(id, creador)) {
-        if (compareDate(fecha_fin, fecha_inicio)) {
-            if (parseFloat(hora_fin) > parseFloat(hora_inicio)) {
-                let flag = await pool.query('UPDATE evento SET ? WHERE id = ?', [evento,id]);
 
-                if (flag) {
-                    res.json({
-                        status: 200,
-                        message: "Se ha actualizado correctamente el Evento",
-                        evento: evento
-                    });
+    if (isTheCreator(id, creador)) {
+        if (validateDate(fecha_inicio)) {
+            if (compareDate(fecha_fin, fecha_inicio)) {
+                if (compareTime(hora_fin, hora_inicio)) {
+                    let flag = await pool.query('UPDATE evento SET ? WHERE id = ?', [evento, id]);
+                    if (flag) {
+                        res.json({
+                            status: 200,
+                            message: "Se ha actualizado correctamente el Evento",
+                            evento: evento
+                        });
+                    } else {
+                        res.json({
+                            status: 400,
+                            message: "Error interno al actualizar Evento",
+                            evento: evento
+                        });
+                    }
                 } else {
                     res.json({
-                        status: 400,
-                        message: "Error al actualizar Evento, verifique los datos",
+                        status: 300,
+                        message: "La hora de fin es menor a la hora de inicio",
                         evento: evento
                     });
                 }
             } else {
                 res.json({
-                    status: 400,
-                    message: "La hora de fin es menor a la hora de inicio, verifique los datos",
+                    status: 300,
+                    message: "La fecha de fin es menor a la fecha de inicio",
                     evento: evento
                 });
             }
         } else {
             res.json({
-                status: 400,
-                message: "La fecha de fin es menor a la fecha de inicio, verifique los datos",
+                status: 300,
+                message: "La fecha de inicio esta vencida",
                 evento: evento
             });
         }
     } else {
         res.json({
-            status: 400,
+            status: 300,
             message: "Error al actualizar Evento, no es propietario de dicho Evento"
         });
     }
@@ -156,16 +167,21 @@ router.post('/delete/:id', async (req, res) => {
     const { creador } = req.body;
 
     if (await isTheCreator(id, creador)) {
-
-        await pool.query('DELETE FROM evento WHERE id = ?', [id]);
-
-        res.json({
-            status: 200,
-            message: "Se ha eliminado correctamente el Evento"
-        });
+        let flag = await pool.query('DELETE FROM evento WHERE id = ?', [id]);
+        if (flag) {
+            res.json({
+                status: 200,
+                message: "Se ha eliminado correctamente el Evento"
+            });
+        } else {
+            res.json({
+                status: 400,
+                message: "Error interno al actualizar Evento"
+            });
+        }
     } else {
         res.json({
-            status: 400,
+            status: 300,
             message: "Error al eliminar Evento, no es propietario de dicho Evento"
         });
     }
@@ -179,11 +195,19 @@ async function isTheCreator(id, creador) {
     else return false;
 }
 
+function validateDate(dateTimeA) {
+    if (moment(moment(dateTimeA).format('YYYY/MM/DD')).isSameOrAfter((moment(new Date()).format('YYYY/MM/DD')))) return true;
+    else return false;
+}
+
 function compareDate(dateTimeA, dateTimeB) {
     var momentA = moment(dateTimeA).format('YYYY/MM/DD');;
     var momentB = moment(dateTimeB).format('YYYY/MM/DD');;
     if (momentA >= momentB) return true;
     else return false;
 }
-
+function compareTime(TimeA, TimeB) {
+    if (moment(TimeA, 'hh:mm').isAfter(moment(TimeB, 'hh:mm'))) return true;
+    else return false;
+}
 module.exports = router;

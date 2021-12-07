@@ -58,3 +58,4 @@ const getInfoEvento = async(id) => {
     document.getElementById('event_hr_end').innerHTML = object.evento[0].hora_fin;
     document.getElementById('event_state').innerHTML = object.evento[0].estado? "<span class='badge bg-success text-light pl-3 pr-3'>Activo</span>" : "<span class='badge bg-danger text-light pl-3 pr-3'>Terminado</span>";
 }
+
