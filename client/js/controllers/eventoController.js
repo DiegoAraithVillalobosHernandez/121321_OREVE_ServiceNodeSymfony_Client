@@ -1,5 +1,3 @@
-
-const url = 'http://localhost:4000';
 let alertEvent = document.getElementById('alertCountEvent');
 alertEvent.style.display = "none";
 

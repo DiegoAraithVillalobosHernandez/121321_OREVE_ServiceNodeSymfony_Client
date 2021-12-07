@@ -56,6 +56,13 @@ class Usuario
      */
     private $keyword;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="usuario", type="string", length=100, nullable=false)
+     */
+    private $usuario;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -121,5 +128,15 @@ class Usuario
         return $this;
     }
 
+    public function getUsuario(): ?string
+    {
+        return $this->usuario;
+    }
 
+    public function setUsuario(string $usuario): self
+    {
+        $this->usuario = $usuario;
+
+        return $this;
+    }
 }

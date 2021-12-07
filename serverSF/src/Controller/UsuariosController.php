@@ -160,4 +160,27 @@ class UsuariosController extends AbstractController{
 
         return new JsonResponse($data);
     }
+
+    public function findIdByUserOrEmail($name_email){
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery('SELECT u.id FROM App:Usuario u WHERE u.usuario = :name_email or u.correo = :name_email');
+        $query->setParameter(':name_email', $name_email);
+        $id = $query->getResult();
+
+        $data = [
+            'status' => 400,
+            'message' => 'Usuario y contraseña incorrectos.',
+            'id' => 0
+        ];
+
+        if(count($id) > 0){
+            $data = [
+                'status' => 200,
+                'message' => 'Logeo exitoso, Bienvenido',
+                'id' => $id[0]
+            ];
+        }
+
+        return new JsonResponse($data);
+    }
 }
