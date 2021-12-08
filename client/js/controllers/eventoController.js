@@ -1,3 +1,7 @@
+document.getElementById('c_refresh').disabled = true;
+document.getElementById('u_refresh').disabled = true;
+document.getElementById('r_refresh').disabled = true;
+
 const findAllMines = async () => {
     await $.ajax({
         type: 'GET',
@@ -73,13 +77,16 @@ const createEvento = () => {
         let color = "";
         switch (res.status) {
             case 200:
-                color = "alert-success"
+                color = "alert-success";
+                document.getElementById('c_refresh').disabled = false;
+                document.getElementById('c_discard').disabled = true;
+                document.getElementById('c_add').disabled = true;
                 break;
             case 300:
-                color = "alert-warning"
+                color = "alert-warning";
                 break
             case 400:
-                color = "alert-danger"
+                color = "alert-danger";
         }
         let content = "";
         content += `
@@ -116,13 +123,16 @@ const updateEvento = () => {
         let color = "";
         switch (res.status) {
             case 200:
-                color = "alert-success"
+                color = "alert-success";
+                document.getElementById('u_refresh').disabled = false;
+                document.getElementById('u_discard').disabled = true;
+                document.getElementById('u_update').disabled = true;
                 break;
             case 300:
-                color = "alert-warning"
+                color = "alert-warning";
                 break
             case 400:
-                color = "alert-danger"
+                color = "alert-danger";
         }
         let content = "";
         content += `
@@ -163,10 +173,13 @@ const deleteEvento = () => {
         let color = "";
         switch (res.status) {
             case 200:
-                color = "alert-success"
+                color = "alert-success";
+                document.getElementById('r_refresh').disabled = false;
+                document.getElementById('r_discard').disabled = true;
+                document.getElementById('r_del').disabled = true;
                 break;
             case 400:
-                color = "alert-danger"
+                color = "alert-danger";
         }
         let content = "";
         content += `
