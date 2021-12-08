@@ -22,6 +22,14 @@ const findAllMines = async () => {
                     "</div>" +
                     "<div class='card-body'>" +
                     "<h5 class='card-title'>Información del evento</h5>" +
+                    "Fecha y hora de inicio: " + listEventos[i].fecha_inicio + " - " + listEventos[i].hora_fin +
+                    "<br>"+
+                    "Fecha y hora de finalización: " + listEventos[i].fecha_fin + " - " + listEventos[i].hora_fin +
+                    "<br>"+
+                    "Ubicación: " + listEventos[i].ubicacion +
+                    "<br>"+
+                    "<br>"+
+                    "<h5 class='card-title'>Descripción</h5>" + listEventos[i].descripcion  +
                     "<hr>" +
                     "<div class='row'>" +
                     "<div class='col-6'>" +
@@ -93,7 +101,7 @@ const updateEvento = () => {
     let hora_fin = document.getElementById('u_eve_hr_end').value;
     let fecha_inicio = document.getElementById('u_eve_date_start').value;
     let fecha_fin = document.getElementById('u_eve_date_end').value;
-    let descripcion = document.getElementById('u_eve_description').value === "" ? "" : document.getElementById('c_eve_description').value;
+    let descripcion = document.getElementById('u_eve_description').value === "" ? "" : document.getElementById('u_eve_description').value;
     let creador = sessionStorage.getItem('userId');
     let id = document.getElementById('u_eve_id').value;
 

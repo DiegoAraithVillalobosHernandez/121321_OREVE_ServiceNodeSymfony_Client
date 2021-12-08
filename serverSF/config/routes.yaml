@@ -20,13 +20,13 @@ createUsuario:
 
 #findById METHODS
 
-findByIdAsistencia:
-    path: /asistencia/{id}
-    controller: App\Controller\AsistenciasController::findById
-    
 findIdByUserOrEmail:
     path: /usuario/findId
     controller: App\Controller\UsuariosController::findIdByUserOrEmail
+
+findByIdAsistencia:
+    path: /asistencia/{id}
+    controller: App\Controller\AsistenciasController::findById
 
 findByIdUsuario:
     path: /usuario/{id}

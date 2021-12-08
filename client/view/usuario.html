@@ -78,30 +78,32 @@
                     </div>
                 </div>
                 <br>
-                <div class="row">
-                    <div class="col-6">
-                        <div class="form-group">
-                          <label>Nombre (s): <span class="text-danger">*</span></label>
-                          <input type="text" name="u_usr_nombre" id="u_usr_nombre" class="form-control" autocomplete="off" disabled required>
+                <form action="javascript:void(0);" onsubmit="updateInfo();">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                              <label>Nombre (s): <span class="text-danger">*</span></label>
+                              <input type="text" name="u_usr_nombre" id="u_usr_nombre" class="form-control" autocomplete="off" disabled required>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                              <label>Apellido Paterno: <span class="text-danger">*</span></label>
+                              <input type="text" name="u_usr_appa" id="u_usr_appa" class="form-control" autocomplete="off" disabled required>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                              <label>Apellido Materno: <span class="text-danger">*</span></label>
+                              <input type="text" name="u_usr_apma" id="u_usr_apma" class="form-control" autocomplete="off" disabled required>
+                            </div>
+                        </div>
+                        <div class="mt-4 col-12 text-right">
+                            <button type="button" class="btn btn-danger" onclick="infoDiscard()" id="btn_disc_usr_info" disabled><span class="fas fa-ban"></span> Cancelar</button>
+                            <button type="submit" class="btn btn-success" id="btn_save_usr_info" disabled><span class="fas fa-save"></span> Guardar</button>
                         </div>
                     </div>
-                    <div class="col-3">
-                        <div class="form-group">
-                          <label>Apellido Paterno: <span class="text-danger">*</span></label>
-                          <input type="text" name="u_usr_appa" id="u_usr_appa" class="form-control" autocomplete="off" disabled required>
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <div class="form-group">
-                          <label>Apellido Materno: <span class="text-danger">*</span></label>
-                          <input type="text" name="u_usr_apma" id="u_usr_apma" class="form-control" autocomplete="off" disabled required>
-                        </div>
-                    </div>
-                    <div class="mt-4 col-12 text-right">
-                        <button class="btn btn-danger" onclick="infoDiscard()" id="btn_disc_usr_info" disabled><span class="fas fa-ban"></span> Cancelar</button>
-                        <button class="btn btn-success" id="btn_save_usr_info" disabled><span class="fas fa-save"></span> Guardar</button>
-                    </div>
-                </div>
+                </form>
                 <br>
                 <hr>
                 <div class="row">
@@ -118,36 +120,38 @@
                     </div>
                 </div>
                 <br>
-                <div class="row">
-                    <div class="col-4">
-                        <div class="form-group">
-                          <label>Usuario: <span class="text-danger">*</span></label>
-                          <input type="text" name="u_usr_usr" id="u_usr_usr" class="form-control" autocomplete="off" disabled required>
+                <form action="javascript:void(0);" onsubmit="updateUser();">
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                              <label>Usuario: <span class="text-danger">*</span></label>
+                              <input type="text" name="u_usr_usr" id="u_usr_usr" class="form-control" autocomplete="off" disabled required>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                              <label>Correo Electrónico: <span class="text-danger">*</span></label>
+                              <input type="text" name="u_usr_email" id="u_usr_email" class="form-control" autocomplete="off" disabled required>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                              <label>Contraseña: <span class="text-danger">*</span></label>
+                              <input type="password" name="u_usr_password" id="u_usr_password" class="form-control" autocomplete="off" disabled required>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                              <label>Confirmar Contrseña: <span class="text-danger">*</span></label>
+                              <input type="password" name="u_usr_conf_password" id="u_usr_conf_password" class="form-control" autocomplete="off" disabled required>
+                            </div>
+                        </div>
+                        <div class="mt-4 col-12 text-right">
+                            <button type="button" class="btn btn-danger" onclick="userDiscard()" id="btn_disc_usr_usr" disabled="true"><span class="fas fa-ban"></span> Cancelar</button>
+                            <button type="submit" class="btn btn-success" id="btn_save_usr_usr" disabled="true"><span class="fas fa-save"></span> Guardar</button>
                         </div>
                     </div>
-                    <div class="col-4">
-                        <div class="form-group">
-                          <label>Correo Electrónico: <span class="text-danger">*</span></label>
-                          <input type="text" name="u_usr_email" id="u_usr_email" class="form-control" autocomplete="off" disabled required>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="form-group">
-                          <label>Contraseña: <span class="text-danger">*</span></label>
-                          <input type="text" name="u_usr_password" id="u_usr_password" class="form-control" autocomplete="off" disabled required>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="form-group">
-                          <label>Confirmar Contrseña: <span class="text-danger">*</span></label>
-                          <input type="text" name="u_usr_conf_password" id="u_usr_conf_password" class="form-control" autocomplete="off" disabled required>
-                        </div>
-                    </div>
-                    <div class="mt-4 col-12 text-right">
-                        <button class="btn btn-danger" onclick="userDiscard()" id="btn_disc_usr_usr" disabled="true"><span class="fas fa-ban"></span> Cancelar</button>
-                        <button class="btn btn-success" id="btn_save_usr_usr" disabled="true"><span class="fas fa-save"></span> Guardar</button>
-                    </div>
-                </div>
+                </form>
                 <br>
             </div>
         </div>

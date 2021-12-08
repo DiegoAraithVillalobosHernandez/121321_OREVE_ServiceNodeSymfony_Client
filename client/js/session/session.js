@@ -31,7 +31,6 @@ const login = async () => {
     let user_email = document.getElementById('user_email').value;
     let password = document.getElementById('user_password').value;
     sessionStorage.setItem('user_email', user_email);
-    sessionStorage.setItem('user_password', password);
     let userId = await findIdByUserOrEmail(user_email, password);
     sessionStorage.setItem('userId', userId.id.id);
     sessionStorage.setItem('message', userId.message);

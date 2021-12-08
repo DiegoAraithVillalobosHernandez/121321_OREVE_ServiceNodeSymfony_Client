@@ -21,6 +21,36 @@ const setData = async() => {
 
 setData();
 
-const updateInfo = () => {
-    
+const updateInfo = async() => {
+    let nombre = document.getElementById('u_usr_nombre').value;
+    let ap_paterno = document.getElementById('u_usr_appa').value;
+    let ap_materno = document.getElementById('u_usr_apma').value;
+
+    await $.ajax({
+        type: 'POST',
+        url: url2 + '/usuario/update/info/' + userId,
+        data: { nombre, ap_paterno, ap_materno }
+    }).done(res => {
+        console.log(res.status);
+    });
+}
+
+const updateUser = async() => {
+    let usuario = document.getElementById('u_usr_usr').value;
+    let correo = document.getElementById('u_usr_email').value;
+    let keyword = document.getElementById('u_usr_password').value;
+    let conf = document.getElementById('u_usr_conf_password').value;
+
+    if(keyword === conf){
+        await $.ajax({
+            type: 'POST',
+            url: url2 + '/usuario/update/user/' + userId,
+            data: { usuario, correo, keyword }
+        }).done(res => {
+            console.log(res.status);
+            sessionStorage.setItem('user_email', usuario);
+        });
+    }else{
+        console.log('Las contraseñas no coinciden');
+    }
 }

@@ -10,15 +10,15 @@ const findAll = async() => {
         let cont = $('#eventos');
 
         if(listEventos != null){
+            console.log(listEventos);
             for(let i = 0; i < listEventos.length; i++){
                 cont.append(
                     "<div class='card bg-light mb-3 pb-0'>"+
                         "<div class='card-header'>"+
-                            "<h5><i class='fas fa-user'></i> Usuario</h5>"+
+                            "<h5>"+ listEventos[i].nombre +"</h5>"+
                         "</div>"+
                         "<div class='card-body'>"+
-                            "<h5 class='card-title'>"+ listEventos[i].nombre +"</h5>"+
-                            "<p class='card-text'>"+ listEventos[i].descripcion +"</p>"+
+                        "<h5 class='card-title'>Descripción</h5>" + listEventos[i].descripcion  +
                             "<hr>"+
                             "<div class='row'>"+
                                 "<div class='col-6'>"+
