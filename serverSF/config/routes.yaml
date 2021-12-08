@@ -23,14 +23,14 @@ createUsuario:
 findByIdAsistencia:
     path: /asistencia/{id}
     controller: App\Controller\AsistenciasController::findById
+    
+findIdByUserOrEmail:
+    path: /usuario/findId
+    controller: App\Controller\UsuariosController::findIdByUserOrEmail
 
 findByIdUsuario:
     path: /usuario/{id}
     controller: App\Controller\UsuariosController::findById
-
-findIdByUserOrEmail:
-    path: /usuario/id/{name_email}
-    controller: App\Controller\UsuariosController::findIdByUserOrEmail
 
 #delete METHODS
 

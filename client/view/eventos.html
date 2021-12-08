@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
         integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="shortcut icon" href="../src/img/loaf.svg">
     <title>OREVE | Mis Eventos</title>
 </head>
 
@@ -82,7 +83,8 @@
             <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content p-3">
                     <h2>Eliminar Evento <span class="fas fa-leaf"></span></h2>
-                    <input type="text" name="r_eve_id" id="r_eve_id">
+                    <form action="javascript:void(0);" onsubmit="deleteEvento();">
+                    <input type="hidden" name="r_eve_id" id="r_eve_id">
                     <div class="row mt-3 mb-2">
                         <div class="col-12">
                             <div class="form-group">
@@ -94,14 +96,18 @@
                             </div>
                         </div>
                     </div>
+                    <div id="r_msg" class="text-center mt-3" style="width:100%;">
+
+                    </div>
                     <div class="text-right">
-                        <button type="button" class="btn btn-danger"><span class="fas fa-trash"></span> Eiminar</button>
+                        <button type="submit" class="btn btn-danger"><span class="fas fa-trash"></span> Eiminar</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal"><span
                                 class="fas fa-ban"></span> Cancelar</button>
                     </div>
                 </div>
             </div>
         </div>
+    </form>
     </div>
     <!--MODAL ELIMINAR FIN-->
 

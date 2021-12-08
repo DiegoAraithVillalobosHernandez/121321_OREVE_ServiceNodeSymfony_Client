@@ -19,19 +19,21 @@ if (message === null || message === "") {
         sessionStorage.setItem('message', "");
 }
 
-const findIdByUserOrEmail = async(user_email) => {
+const findIdByUserOrEmail = async(user_email, password) => {
     return await $.ajax({
         type: 'GET',
-        url: url2 + '/usuario/id/' + user_email
+        url: url2 + '/usuario/findId',
+        data: {user_email, password}
     }).done(res => res);
 }
 
 const login = async () => {
     let user_email = document.getElementById('user_email').value;
+    let password = document.getElementById('user_password').value;
     sessionStorage.setItem('user_email', user_email);
-    let userId = await findIdByUserOrEmail(user_email);
-    let id = userId.id.id;
-    sessionStorage.setItem('userId', id);
+    sessionStorage.setItem('user_password', password);
+    let userId = await findIdByUserOrEmail(user_email, password);
+    sessionStorage.setItem('userId', userId.id.id);
     sessionStorage.setItem('message', userId.message);
     sessionStorage.setItem('state', userId.state)
     window.location.replace('./view/home.html');

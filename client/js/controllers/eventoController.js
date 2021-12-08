@@ -146,6 +146,33 @@ const getInfoUpdateEvento = async(id) => {
     });
 }
 
+const deleteEvento = () => {
+    let id = document.getElementById('r_eve_id').value;
+    $.ajax({
+        type: 'POST',
+        url: url + '/evento/delete/' + id,
+    }).done(function (res) {
+        let color = "";
+        switch (res.status) {
+            case 200:
+                color = "alert-success"
+                break;
+            case 400:
+                color = "alert-danger"
+        }
+        let content = "";
+        content += `
+        <div class="alert ${color} alert-dismissible fade show" role="alert">
+        <strong>${res.message}</strong> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        `
+        $("#r_msg").html(content);
+    })
+}
+
 const getIdDeleteEvento = (id) => {
     document.getElementById('r_eve_id').value = id;
     

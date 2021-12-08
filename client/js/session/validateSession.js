@@ -7,6 +7,7 @@ if(userId === null || userId === "undefined"){
 
 const logout = () => {
     sessionStorage.setItem('user_email', "");
+    sessionStorage.setItem('user_password', "");
     sessionStorage.setItem('userId', 0);
     sessionStorage.setItem('state', 0);
     sessionStorage.setItem('message', "");

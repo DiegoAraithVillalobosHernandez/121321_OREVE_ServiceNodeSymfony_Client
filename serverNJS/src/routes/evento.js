@@ -55,7 +55,7 @@ router.get('/:id', async (req, res) => { // GetById
     }
 });
 
-router.post('/create', async (req, res) => { 
+router.post('/create', async (req, res) => {
     const { nombre, ubicacion, hora_inicio, hora_fin,
         fecha_inicio, fecha_fin, descripcion, creador } = req.body;
     const evento = {
@@ -164,27 +164,20 @@ router.post('/update/:id', async (req, res) => {
 
 router.post('/delete/:id', async (req, res) => {
     const { id } = req.params;
-    const { creador } = req.body;
 
-    if (await isTheCreator(id, creador)) {
-        let flag = await pool.query('DELETE FROM evento WHERE id = ?', [id]);
-        if (flag) {
-            res.json({
-                status: 200,
-                message: "Se ha eliminado correctamente el Evento"
-            });
-        } else {
-            res.json({
-                status: 400,
-                message: "Error interno al actualizar Evento"
-            });
-        }
+    let flag = await pool.query('DELETE FROM evento WHERE id = ?', [id]);
+    if (flag) {
+        res.json({
+            status: 200,
+            message: "Se ha eliminado correctamente el Evento"
+        });
     } else {
         res.json({
-            status: 300,
-            message: "Error al eliminar Evento, no es propietario de dicho Evento"
+            status: 400,
+            message: "Error interno al actualizar Evento"
         });
     }
+
 });
 
 async function isTheCreator(id, creador) {
