@@ -1,2 +1,2 @@
 
-document.getElementById('user').innerHTML = sessionStorage.getItem('user_email');
+document.getElementById('user').innerHTML = sessionStorage.getItem('user');

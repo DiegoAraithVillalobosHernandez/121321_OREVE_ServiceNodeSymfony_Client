@@ -62,7 +62,7 @@ class UsuariosController extends AbstractController{
         $nombre = $req->get('nombre', null);
         $ap_paterno = $req->get('ap_paterno', null);
         $ap_materno = $req->get('ap_materno', null);
-        $usuario = $req->get('usuario', null);
+        $usuarioName = $req->get('usuario', null);
         $correo = $req->get('correo', null);
         $keyword = $req->get('keyword', null);
 
@@ -71,7 +71,7 @@ class UsuariosController extends AbstractController{
         $usuario->setNombre($nombre);
         $usuario->setApPaterno($ap_paterno);
         $usuario->setApMaterno($ap_materno);
-        $usuario->setUsuario($usuario);
+        $usuario->setUsuario($usuarioName);
         $usuario->setCorreo($correo);
         $usuario->setKeyword($keyword);
 

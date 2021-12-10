@@ -1,4 +1,6 @@
 
+let id = sessionStorage.getItem('userId');
+
 const findById = async() => {
     return await $.ajax({
         type: 'GET',
@@ -52,5 +54,19 @@ const updateUser = async() => {
         });
     }else{
         console.log('Las contraseñas no coinciden');
+    }
+}
+
+const removeUser = async() => {
+    let password = document.getElementById('r_user_pass').value;
+    let conf = document.getElementById('r_user_conf_pass').value;
+
+    if(password === conf){
+        await $.ajax({
+            type: 'POST',
+            url: url2 + '/usuario/remove/' + id
+        }).done(res => {
+            window.location.replace('../index.html');
+        });
     }
 }

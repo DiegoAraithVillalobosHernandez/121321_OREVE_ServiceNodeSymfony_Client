@@ -1,15 +1,14 @@
 
-let user_email = sessionStorage.getItem('user_email');
+let user = sessionStorage.getItem('user');
 let userId = sessionStorage.getItem('userId');
-if(userId === null || userId === "undefined"){
+
+if(userId === "undefined" || userId == 0){
+    sessionStorage.setItem('status', 'INV_SESSION');
     window.location.replace('../index.html');
 }
 
 const logout = () => {
-    sessionStorage.setItem('user_email', "");
-    sessionStorage.setItem('user_password', "");
-    sessionStorage.setItem('userId', 0);
-    sessionStorage.setItem('state', 0);
-    sessionStorage.setItem('message', "");
+    sessionStorage.setItem('userId', null);
+    sessionStorage.setItem('user', null);
     window.location.replace('../index.html');
 }

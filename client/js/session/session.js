@@ -1,22 +1,14 @@
 
-let div = document.getElementById('l_msg');
-let message = sessionStorage.getItem('message');
-let state = sessionStorage.getItem('state');
+let ste = sessionStorage.getItem('status');
+let al_sess = document.getElementById('al_sess');
+al_sess.style.display = "none";
 
-if (message === null || message === "") {
-    div.style.display = "none";
-} else {
-        let content = "";
-        content += `
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <strong>${message}</strong> 
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            </div>
-            `
-        $("#l_msg").html(content);
-        sessionStorage.setItem('message', "");
+console.log(ste);
+
+if(ste === 'INV_SESSION'){
+    al_sess.style.display = "block";
+}else{
+    al_sess.style.display = "none";
 }
 
 const findIdByUserOrEmail = async(user_email, password) => {
@@ -28,12 +20,13 @@ const findIdByUserOrEmail = async(user_email, password) => {
 }
 
 const login = async () => {
-    let user_email = document.getElementById('user_email').value;
+    let user = document.getElementById('user_email').value;
     let password = document.getElementById('user_password').value;
-    sessionStorage.setItem('user_email', user_email);
-    let userId = await findIdByUserOrEmail(user_email, password);
+
+    let userId = await findIdByUserOrEmail(user, password);
+
+    sessionStorage.setItem('status', '');
+    sessionStorage.setItem('user', user);
     sessionStorage.setItem('userId', userId.id.id);
-    sessionStorage.setItem('message', userId.message);
-    sessionStorage.setItem('state', userId.state)
     window.location.replace('./view/home.html');
 }

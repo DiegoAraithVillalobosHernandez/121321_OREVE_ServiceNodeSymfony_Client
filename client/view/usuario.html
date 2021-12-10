@@ -191,30 +191,31 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content p-3">
                     <h2>Eliminar Perfil <span class="fas fa-leaf"></span></h2>
-                    <input type="text" name="r_user_id" id="r_user_id">
-                    <div class="row mt-3 mb-2">
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label>Ingrese su contrseña para confirmar.</label>
+                    <form action="javascript:void(0);" onsubmit="removeUser();">
+                        <div class="row mt-3 mb-2">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label>Ingrese su contrseña para confirmar.</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label>Contraseña: <span class="text-danger"></span></label>
+                                    <input type="password" name="r_user_pass" id="r_user_pass" class="form-control" autocomplete="off" required>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label>Confirmar Contraseña: <span class="text-danger"></span></label>
+                                    <input type="password" name="r_user_conf_pass" id="r_user_conf_pass" class="form-control" autocomplete="off" required>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label>Contraseña: <span class="text-danger"></span></label>
-                                <input type="password" name="r_user_pass" id="r_user_pass" class="form-control" autocomplete="off" required>
-                            </div>
+                        <div class="text-right">
+                            <button type="submit" class="btn btn-danger"><span class="fas fa-trash"></span> Eiminar Permanentemente</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal"><span class="fas fa-ban"></span> Cancelar</button>
                         </div>
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label>Confirmar Contraseña: <span class="text-danger"></span></label>
-                                <input type="password" name="r_user_conf_pass" id="r_user_conf_pass" class="form-control" autocomplete="off" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text-right">
-                        <button type="button" class="btn btn-danger"><span class="fas fa-trash"></span> Eiminar Permanentemente</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><span class="fas fa-ban"></span> Cancelar</button>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
