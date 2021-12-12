@@ -21,6 +21,7 @@ app.use((req, res, next) => {
 
 //routes es como las rutas yaml
 app.use('/evento',require('./routes/evento.js'));
+app.use('/asistencia',require('./routes/asistencia.js'));
 
 //starting server
 app.listen(app.get('port'),() =>{

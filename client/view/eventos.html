@@ -19,10 +19,6 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-success">
         <a class="navbar-brand" href="#">OREVE <i class="fas fa-leaf"></i></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
@@ -31,6 +27,7 @@
                 </li>
             </ul>
         </div>
+        <span id="user" class="text-light nav-link"></span>
     </nav>
 
     <div class="row d-flex" >
@@ -43,6 +40,9 @@
                     <a class="nav-link active"><span class="fas fa-calendar-day"></span> Mis Eventos</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link text-dark" href="./asistencias.html"><span class="fas fa-calendar-check"></span> Mis Asistencias <span class="badge bg-danger text-light">3</span></a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link text-dark" href="./usuario.html"><span class="fas fa-user"></span> Mi Perfil</a>
                 </li>
                 <li class="nav-item">
@@ -51,9 +51,6 @@
                 <li class="nav-item">
                     <a class="nav-link text-danger" onclick="logout()"><span class="fas fa-sign-out-alt"></span> Cerrar
                         Sesión</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark"><span id="user"></span></a>
                 </li>
             </ul>
         </div>
@@ -71,7 +68,7 @@
                 </div>
                 <hr class="mt-2">
                 <div id="misEventos">
-
+                    
                 </div>
             </div>
         </div>

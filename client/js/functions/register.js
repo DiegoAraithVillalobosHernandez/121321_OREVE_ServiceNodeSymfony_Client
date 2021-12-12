@@ -1,11 +1,7 @@
 
-let al_add = document.getElementById('al_add');
-let al_err = document.getElementById('al_err');
-let al_pass = document.getElementById('al_pass');
-
-al_add.style.display = "none";
-al_pass.style.display = "none";
-al_err.style.display = "none";
+document.getElementById('al_add').style.display = "none";
+document.getElementById('al_err').style.display = "none";
+document.getElementById('al_pass').style.display = "none";
 
 const create = async() => {
     let usuario = document.getElementById('c_usr_usr').value;

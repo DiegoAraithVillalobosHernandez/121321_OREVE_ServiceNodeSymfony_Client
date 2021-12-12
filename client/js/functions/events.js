@@ -10,7 +10,6 @@ const findAll = async() => {
         let cont = $('#eventos');
 
         if(listEventos != null){
-            console.log(listEventos);
             for(let i = 0; i < listEventos.length; i++){
                 cont.append(
                     "<div class='card bg-light mb-3 pb-0'>"+
@@ -50,6 +49,7 @@ const findById = async(id) => {
 const getInfoEvento = async(id) => {
     let object = await findById(id);
     console.log(object.evento);
+    document.getElementById('event_id').value = id;
     document.getElementById('event_date_start').innerHTML = object.evento[0].fecha_inicio;
     document.getElementById('event_date_end').innerHTML = object.evento[0].fecha_fin;
     document.getElementById('event_hr_start').innerHTML = object.evento[0].hora_inicio;

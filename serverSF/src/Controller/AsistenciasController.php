@@ -36,8 +36,8 @@ class AsistenciasController extends AbstractController{
 
     public function findById($id){
         $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery('SELECT a.id, a.idUsuario, a.idEvento FROM App:Asistencia a WHERE a.id = :id');
-        $query->setParameter(':id', $id);
+        $query = $em->createQuery('SELECT e.nombre FROM App:Asistencia a INNER JOIN evento e ON a.idEvento = e.id WHERE a.idUsuario = :idUser');
+        $query->setParameter(':idUser', $id);
         $asistencia = $query->getResult();
 
         $data = [
