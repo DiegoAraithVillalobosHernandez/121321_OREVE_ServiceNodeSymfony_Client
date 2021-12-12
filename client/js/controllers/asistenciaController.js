@@ -10,12 +10,19 @@ const addAsistance = async() => {
     let id_usuario = sessionStorage.getItem('userId');
     let id_evento = document.getElementById('event_id').value;
 
-    console.log(id_usuario);
+    incrementAsistantces(id_evento);
 
     await $.ajax({
         type: 'POST',
         url: url + '/asistencia/add',
         data: { id_usuario, id_evento }
+    }).done(res => res);
+}
+
+const incrementAsistantces = async(id) => {
+    await $.ajax({
+        type: 'POST',
+        url: url + '/evento/addAsistance/' + id
     }).done(res => res);
 }
 

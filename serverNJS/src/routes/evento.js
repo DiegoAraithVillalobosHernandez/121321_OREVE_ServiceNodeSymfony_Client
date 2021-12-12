@@ -162,6 +162,24 @@ router.post('/update/:id', async (req, res) => {
     }
 });
 
+router.post('/addAsistance/:id', async (req, res) => {
+    const { id } = req.params;
+
+    let flag = await pool.query('UPDATE evento SET participantes = (participantes + 1) WHERE id = ?', [id]);
+    if (flag) {
+        res.json({
+            status: 200,
+            message: "Se ha eliminado correctamente el Evento"
+        });
+    } else {
+        res.json({
+            status: 400,
+            message: "Error interno al actualizar Evento"
+        });
+    }
+
+});
+
 router.post('/delete/:id', async (req, res) => {
     const { id } = req.params;
 
