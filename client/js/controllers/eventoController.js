@@ -26,7 +26,7 @@ const findAllMines = async () => {
                     "</div>" +
                     "<div class='card-body'>" +
                     "<div class='row'>" +
-                    "<div class='col-6'>" +
+                    "<div class='col-12 col-lg-6'>" +
                     "<h5 class='card-title'>Información del evento</h5>" +
                     "Fecha y hora de inicio: " + listEventos[i].fecha_inicio + " - " + listEventos[i].hora_fin +
                     "<br>"+
@@ -37,13 +37,15 @@ const findAllMines = async () => {
                     "<br>"+
                     "<h5 class='card-title'>Descripción</h5>" + listEventos[i].descripcion  +
                     "</div>" +
-                    "<div class='col-6'>" +
+                    "<div class='col-12 col-lg-6 text-center'>" +
+                    "<br>" +
+                    "<h5 class='card-title text-left'>Imágenes del evento</h5>" +
                     "<div id='carouselExampleControls' class='carousel slide' data-ride='carousel'>" +
-                    "<div class='carousel-inner'>" +
-                    "<div class='carousel-item active'>" +
-                    "<img src='../src/img/loaf.svg' class='d-block' alt='...'>" +
-                    "</div>" +
-                    "</div>" +
+                    "<div class='carousel-inner'>" + // Este es el contenedor de las imagenes, aqui haces el append
+                    "<div class='carousel-item active'>" + //Inicio del contenedor de la imagen, este contenedor es el que se cicla
+                    "<img src='../src/img/loaf.svg' class='d-block col' height='250'>" +
+                    "</div>" + // fin del contenedor de la imagen
+                    "</div>" + // fin del contenedor de las imagenes
                     "<button class='carousel-control-prev' type='button' data-target='#carouselExampleControls' data-slide='prev'>" +
                     "<span class='carousel-control-prev-icon' aria-hidden='true'> </span>" +
                     "<span class='sr-only'> Previous</span>" +
@@ -57,10 +59,10 @@ const findAllMines = async () => {
                     "</div>" +
                     "<hr>" +
                     "<div class='row'>" +
-                    "<div class='col-6'>" +
+                    "<div class='col-12 col-lg-6'>" +
                     "<label>Participantes: " + listEventos[i].participantes + "</label>" +
                     "</div>" +
-                    "<div class='col-6 text-right'>" +
+                    "<div class='col-12 col-lg-6 text-right'>" +
                     "<button class='btn btn-danger mr-2' data-target='#remove' data-toggle='modal' onclick='getIdDeleteEvento("+ listEventos[i].id +")'><span class='fas fa-trash'></span> Eliminar</span></button>" +
                     "<button class='btn btn-primary mr-2' "+ (listEventos[i].estado? "disabled" : "") +"><span class='fas fa-images'></span> Agregar Imagenes</span></button>" +
                     "<button class='btn btn-warning' data-target='#update' data-toggle='modal' onclick='getInfoUpdateEvento("+ listEventos[i].id +")'><span class='fas fa-edit'></span> Modificar</button>" +

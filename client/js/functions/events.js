@@ -20,11 +20,11 @@ const findAll = async() => {
                         "<h5 class='card-title'>Descripción</h5>" + listEventos[i].descripcion  +
                             "<hr>"+
                             "<div class='row'>"+
-                                "<div class='col-6'>"+
+                                "<div class='col-12 col-lg-6'>"+
                                     "<label>Participantes: <span>"+ listEventos[i].participantes +"</span></label>"+
                                 "</div>"+
-                                "<div class='col-6 text-right'>"+
-                                    "<button type='button' class='btn btn-primary' data-target='#info' data-toggle='modal' onclick='getInfoEvento("+ listEventos[i].id +")'><span class='fas fa-info-circle'></span> Más Información</button>"+
+                                "<div class='col-12 col-lg-6 text-right'>"+
+                                    "<button class='btn btn-primary' data-target='#info' data-toggle='modal' onclick='getInfoEvento("+ listEventos[i].id +")'><span class='fas fa-info-circle'></span> Más Información</button>"+
                                 "</div>"+
                             "</div>"+
                         "</div>"+

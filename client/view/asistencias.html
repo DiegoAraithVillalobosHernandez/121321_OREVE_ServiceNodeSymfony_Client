@@ -58,7 +58,7 @@
         <div class="col-10">
             <div class="container">
                 <div class="row">
-                    <div class="col-7">
+                    <div class="col-12 col-lg-7">
                         <div class="row mt-3">
                             <div class="col-12">
                                 <h1>Mis Asistencias <span class="fas fa-leaf"></span></h1>
@@ -69,7 +69,7 @@
                             
                         </div>
                     </div>
-                    <div class="col-5">
+                    <div class="col-12 col-lg-5">
                         <div class="row mt-3">
                             <div class="col-12">
                                 <h1>Notificaciones <small><span class="badge bg-danger text-light mt-0">3</span></small></h1>
@@ -98,42 +98,42 @@
       <div class="modal-content p-3">
         <h2>Información del Evento <span class="fas fa-leaf"></span></h2>
         <div class="row mt-3 mb-3">
-          <div class="col-6">
+          <div class="col-12 col-lg-6">
             <div class="row">
               <div class="col-6">
-                <label>Fecha de Inicio <br><span id="event_date_start">*</span></label>
+                <label><strong>Fecha de Inicio</strong> <br><span id="event_date_start">*</span></label>
               </div>
               <div class="col-6">
-                <label>Fecha de Finalización <br><span id="event_date_end">*</span></label>
+                <label><strong>Fecha de Finalización</strong> <br><span id="event_date_end">*</span></label>
               </div>
               <div class="col-6">
-                <label>Hora de Inicio <br><span id="event_hr_start">*</span></label>
+                <label><strong>Hora de Inicio</strong> <br><span id="event_hr_start">*</span></label>
               </div>
               <div class="col-6">
-                <label>Hora de Finalización <br><span id="event_hr_end">*</span></label>
+                <label><strong>Hora de Finalización</strong> <br><span id="event_hr_end">*</span></label>
               </div>
               <div class="col-6">
-                <label>Estado <br><span id="event_state">*</span></label>
+                <label><strong>Estado</strong> <br><span id="event_state">*</span></label>
               </div>
               <div class="col-12 mt-4">
                 <form action="javascript:void(0);" onsubmit="removeAsistance();">
                     <input type="hidden" id="asis_id" name="asis_id">
                     <div class="form-group">
-                        <label>¿Deseas cancelar tu participación en este evento?</label><br>
+                        <label><strong>¿Deseas cancelar tu participación en este evento?</strong></label><br>
                         <button type="submit" class="btn btn-success"><span class="fas fa-check"></span> Sí</button>
                     </div>
                 </form>
               </div>
             </div>
           </div>
-          <div class="col-6">
-            <label>Ubicación del evento</label>
-            <div class="mt-2"><div class="gmap_canvas">
-              <iframe width="368" height="500" id="gmap_canvas" 
+          <div class="col-12 col-lg-6">
+            <label><strong>Ubicación del evento</strong></label>
+            <div class="mt-2 col text-center"><div class="gmap_canvas">
+              <iframe width="368" height="300" id="gmap_canvas" 
               src="https://maps.google.com/maps?q=Utez&t=&z=13&ie=UTF8&iwloc=&output=embed" 
               frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
               <a href="https://123movies-org.net"></a><br>
-              <style>.gmap_canvas {overflow:hidden;background:none!important;height:300px;width:480px;}</style>
+              <style>.gmap_canvas {overflow:hidden;background: none !important;height:auto;width:auto;}</style>
             </div></div>
           </div>
         </div>
