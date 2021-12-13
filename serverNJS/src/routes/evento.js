@@ -3,8 +3,9 @@ const router = express.Router();
 const pool = require('../database.js');
 const moment = require('moment');
 
-router.get('/', async (req, res) => { // GetAll
-    let listEventos = await pool.query('SELECT * FROM evento');
+router.get('/nui/:id', async (req, res) => { // GetAll
+    let { id } = req.params;
+    let listEventos = await pool.query('SELECT * FROM evento WHERE creador != ?', [id]);
     if (listEventos.length > 0) {
         res.json({
             status: 200,

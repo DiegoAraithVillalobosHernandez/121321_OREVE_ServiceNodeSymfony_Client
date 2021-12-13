@@ -3,6 +3,8 @@ document.getElementById('u_refresh').disabled = true;
 document.getElementById('r_refresh').disabled = true;
 
 const findAllMines = async () => {
+    findAllAsistanceByUserId();
+
     await $.ajax({
         type: 'GET',
         url: url + '/evento/mine/' + userId
@@ -36,9 +38,9 @@ const findAllMines = async () => {
                     "<br>"+
                     "<br>"+
                     "<h5 class='card-title'>Descripción</h5>" + listEventos[i].descripcion  +
+                    "<br>" +
                     "</div>" +
                     "<div class='col-12 col-lg-6 text-center'>" +
-                    "<br>" +
                     "<h5 class='card-title text-left'>Imágenes del evento</h5>" +
                     "<div id='carouselExampleControls' class='carousel slide' data-ride='carousel'>" +
                     "<div class='carousel-inner'>" + // Este es el contenedor de las imagenes, aqui haces el append
@@ -60,7 +62,7 @@ const findAllMines = async () => {
                     "<hr>" +
                     "<div class='row'>" +
                     "<div class='col-12 col-lg-6'>" +
-                    "<label>Participantes: " + listEventos[i].participantes + "</label>" +
+                    "<label>Participantes: " + listEventos[i].participantes + "</label>" + // onclick="getIdDeleteEvento(3)"
                     "</div>" +
                     "<div class='col-12 col-lg-6 text-right'>" +
                     "<button class='btn btn-danger mr-2' data-target='#remove' data-toggle='modal' onclick='getIdDeleteEvento("+ listEventos[i].id +")'><span class='fas fa-trash'></span> Eliminar</span></button>" +
@@ -187,13 +189,12 @@ const getInfoUpdateEvento = async(id) => {
     });
 }
 
-const deleteEvento = () => {
+const deleteEvento = async() => {
     let id = document.getElementById('r_eve_id').value;
-    $.ajax({
+    await $.ajax({
         type: 'POST',
         url: url + '/evento/delete/' + id,
-    }).done(function (res) {
-        let color = "";
+    }).done(res => {
         switch (res.status) {
             case 200:
                 color = "alert-success";
@@ -204,17 +205,7 @@ const deleteEvento = () => {
             case 400:
                 color = "alert-danger";
         }
-        let content = "";
-        content += `
-        <div class="alert ${color} alert-dismissible fade show" role="alert">
-        <strong>${res.message}</strong> 
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-        </div>
-        `
-        $("#r_msg").html(content);
-    })
+    });
 }
 
 const getIdDeleteEvento = (id) => {

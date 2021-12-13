@@ -1,9 +1,30 @@
 
-const findAllAsistance = async() => {
+const findAllAsistanceByUserId = async() => {
+    let id = sessionStorage.getItem('userId');
+    let today = new Date();
+    let n = 0;
+
     await $.ajax({
         type: 'GET',
-        url: url + '/asistencia'
-    }).done(res => res);
+        url: url + '/asistencia/user/' + id
+    }).done(res => {
+        let listAsistencias = res.listAsistencias;
+        console.log(listAsistencias);
+        
+        if(listAsistencias != null){
+            for(let i = 0; i < listAsistencias.length; i++){
+                if(checkNotifications(today, listAsistencias[i].fecha_inicio)){
+                    n++;
+                }
+            }
+        }
+
+        if(n > 0){
+            document.getElementById('not_count_nav').innerHTML = n;
+        }else{
+            document.getElementById('not_count_nav').style.display = "none";
+        }
+    });
 }
 
 const addAsistance = async() => {

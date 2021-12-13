@@ -2,9 +2,11 @@ let alertEvent = document.getElementById('alertCountEvent');
 alertEvent.style.display = "none";
 
 const findAll = async() => {
+    findAllAsistanceByUserId();
+    let id = sessionStorage.getItem('userId');
     await $.ajax({
         type: 'GET',
-        url: url + '/evento'
+        url: url + '/evento/nui/' + id // nui = not user id
     }).done(res => {
         let listEventos = res.listEventos;
         let cont = $('#eventos');

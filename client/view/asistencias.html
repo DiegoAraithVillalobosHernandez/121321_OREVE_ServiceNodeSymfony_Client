@@ -40,7 +40,7 @@
                     <a class="nav-link text-dark" href="./eventos.html"><span class="fas fa-calendar-day"></span> Mis Eventos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active"><span class="fas fa-calendar-check"></span> Mis Asistencias <span class="badge bg-danger text-light">3</span></a>
+                    <a class="nav-link active"><span class="fas fa-calendar-check"></span> Mis Asistencias <span id="not_count_nav" class="badge bg-danger text-light"></span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-dark" href="./usuario.html"><span class="fas fa-user"></span> Mi Perfil</a>
@@ -72,20 +72,12 @@
                     <div class="col-12 col-lg-5">
                         <div class="row mt-3">
                             <div class="col-12">
-                                <h1>Notificaciones <small><span class="badge bg-danger text-light mt-0">3</span></small></h1>
+                                <h1>Notificaciones <small><span id="not_count" class="badge bg-danger text-light mt-0"></span></small></h1>
                             </div>
                         </div>
                         <hr class="mt-2">
                         <div id="notify">
-                            <div class='card bg-light mb-3 pb-0'>
-                                <div class='card-header'>
-                                    <h5>El siguiente evento está por comenzar.</h5>
-                                </div>
-                                <div class='card-body'>
-                                    <label class="card-text">Título del evento</label><br>
-                                    <label class="card-text">[fecha] a la(s) [hora]</label>
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -147,6 +139,7 @@
     <script src="../js/session/getSession.js"></script>
     <script src="../js/functions/urls.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+    <script src="../js/functions/notificactions.js"></script>
     <script src="../js/functions/asistances.js"></script>
     <script src="../js/controllers/asistenciaController.js"></script>
         

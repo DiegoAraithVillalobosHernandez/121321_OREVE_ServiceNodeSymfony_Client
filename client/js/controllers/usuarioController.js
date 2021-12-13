@@ -9,6 +9,8 @@ const findById = async() => {
 }
 
 const setData = async() => {
+    findAllAsistanceByUserId();
+
     let data = await findById(userId);
     console.log(data);
 
