@@ -48,9 +48,33 @@ const findById = async(id) => {
     }).done(res => res);
 }
 
+const validateAsistance = async(id_evento) => {
+    let id_user = sessionStorage.getItem('userId');
+    let flag = false;
+    await $.ajax({
+        type: 'GET',
+        url: url + '/asistencia/find/' + id_evento + '/' + id_user
+    }).done(res => {
+        if(res.asistencia[0].id != 0){
+            flag = true;
+        }
+    });
+
+    return flag;
+}
+
 const getInfoEvento = async(id) => {
     let object = await findById(id);
-    console.log(object.evento);
+    let flag = await validateAsistance(id);
+
+    if(flag){
+        document.getElementById('btn_conf_asis').style.display = "none";
+        document.getElementById('txt_conf_asis').innerHTML = "Actualmente ya participas en este evento";
+    }else{
+        document.getElementById('btn_conf_asis').style.display = "block";
+        document.getElementById('txt_conf_asis').innerHTML = "¿Deseas participar en este evento?";
+    }
+
     document.getElementById('event_id').value = id;
     document.getElementById('event_date_start').innerHTML = object.evento[0].fecha_inicio;
     document.getElementById('event_date_end').innerHTML = object.evento[0].fecha_fin;

@@ -70,7 +70,7 @@ const findById = async(id) => {
 
 const getInfoEvento = async(id) => {
     let object = await findById(id);
-    document.getElementById('asis_id').value = id;
+    document.getElementById('event_id').value = object.asistencia[0].id;
     document.getElementById('event_date_start').innerHTML = object.asistencia[0].fecha_inicio;
     document.getElementById('event_date_end').innerHTML = object.asistencia[0].fecha_fin;
     document.getElementById('event_hr_start').innerHTML = object.asistencia[0].hora_inicio;

@@ -9,7 +9,6 @@ const findAllAsistanceByUserId = async() => {
         url: url + '/asistencia/user/' + id
     }).done(res => {
         let listAsistencias = res.listAsistencias;
-        console.log(listAsistencias);
         
         if(listAsistencias != null){
             for(let i = 0; i < listAsistencias.length; i++){
@@ -48,10 +47,21 @@ const incrementAsistantces = async(id) => {
 }
 
 const removeAsistance = async() => {
-    let id = document.getElementById('asis_id').value;
+    let id_usuario = sessionStorage.getItem('userId');
+    let id_evento = document.getElementById('event_id').value;
+
+    decreaseAsistantces(id_evento);
 
     await $.ajax({
         type: 'POST',
-        url: url + '/asistencia/remove/' + id
+        url: url + '/asistencia/remove',
+        data: { id_usuario, id_evento }
+    }).done(res => res);
+}
+
+const decreaseAsistantces = async(id) => {
+    await $.ajax({
+        type: 'POST',
+        url: url + '/evento/removeAsistance/' + id
     }).done(res => res);
 }

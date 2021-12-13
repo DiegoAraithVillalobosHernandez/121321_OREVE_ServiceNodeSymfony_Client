@@ -12,7 +12,6 @@ const setData = async() => {
     findAllAsistanceByUserId();
 
     let data = await findById(userId);
-    console.log(data);
 
     document.getElementById('u_usr_nombre').value = data.usuario[0].nombre;
     document.getElementById('u_usr_appa').value = data.usuario[0].apPaterno;
@@ -34,9 +33,7 @@ const updateInfo = async() => {
         type: 'POST',
         url: url2 + '/usuario/update/info/' + userId,
         data: { nombre, ap_paterno, ap_materno }
-    }).done(res => {
-        console.log(res.status);
-    });
+    }).done(res => res);
 }
 
 const updateUser = async() => {
@@ -51,11 +48,10 @@ const updateUser = async() => {
             url: url2 + '/usuario/update/user/' + userId,
             data: { usuario, correo, keyword }
         }).done(res => {
-            console.log(res.status);
-            sessionStorage.setItem('user_email', usuario);
+            sessionStorage.setItem('user', usuario);
         });
     }else{
-        console.log('Las contraseñas no coinciden');
+        //alert de contraseñas no iguales
     }
 }
 
@@ -68,7 +64,16 @@ const removeUser = async() => {
             type: 'POST',
             url: url2 + '/usuario/remove/' + id
         }).done(res => {
-            window.location.replace('../index.html');
+            removeUserEvents();
         });
     }
+}
+
+const removeUserEvents = async() => {
+    await $.ajax({
+        type: 'POST',
+        url: url + '/evento/remove/user/' + id
+    }).done(res => {
+        window.location.replace('../index.html');
+    });
 }

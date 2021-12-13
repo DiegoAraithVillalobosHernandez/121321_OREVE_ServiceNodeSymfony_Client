@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const pool = require('../database.js');
-const moment = require('moment');
 
 router.get('/', async (req, res) => { // GetAll
     let listAsistencias = await pool.query('SELECT * FROM asistencia');
@@ -10,6 +9,23 @@ router.get('/', async (req, res) => { // GetAll
             status: 200,
             message: "Se han obtenidos los registros de asistencias",
             listAsistencias: listAsistencias
+        });
+    } else {
+        res.json({
+            status: 200,
+            message: "No hay registro de asistencias",
+        });
+    }
+});
+
+router.get('/find/:idEvento/:idUser', async (req, res) => { // GetAll
+    let { idEvento, idUser } = req.params;
+    let asistencia = await pool.query('SELECT * FROM asistencia WHERE id_evento = ? AND id_usuario = ?', [idEvento, idUser]);
+    if (asistencia.length > 0) {
+        res.json({
+            status: 200,
+            message: "Se han obtenidos los registros de asistencias",
+            asistencia: asistencia
         });
     } else {
         res.json({
@@ -74,9 +90,9 @@ router.post('/add', async(req, res) => {
     }
 });
 
-router.post('/remove/:id', async(req, res) => {
-    let { id } = req.params;
-    let flag = await pool.query('DELETE FROM asistencia WHERE id = ?', [id]);
+router.post('/remove', async(req, res) => {
+    let { id_usuario, id_evento } = req.body;
+    let flag = await pool.query('DELETE FROM asistencia WHERE id_usuario = ? AND id_evento = ?', [id_usuario, id_evento]);
 
     if(flag){
         res.json = {

@@ -3,8 +3,6 @@ let ste = sessionStorage.getItem('status');
 let al_sess = document.getElementById('al_sess');
 al_sess.style.display = "none";
 
-console.log(ste);
-
 if(ste === 'INV_SESSION'){
     al_sess.style.display = "block";
 }else{

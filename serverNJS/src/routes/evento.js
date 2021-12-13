@@ -3,6 +3,23 @@ const router = express.Router();
 const pool = require('../database.js');
 const moment = require('moment');
 
+router.get('/', async (req, res) => { // GetAll
+    let listEventos = await pool.query('SELECT * FROM evento');
+    if (listEventos.length > 0) {
+        res.json({
+            status: 200,
+            message: "Se han obtenidos los registros de Eventos",
+            listEventos: listEventos
+        })
+    } else {
+        res.json({
+            status: 200,
+            message: "No hay registros de Eventos",
+        })
+    }
+
+});
+
 router.get('/nui/:id', async (req, res) => { // GetAll
     let { id } = req.params;
     let listEventos = await pool.query('SELECT * FROM evento WHERE creador != ?', [id]);
@@ -170,6 +187,41 @@ router.post('/addAsistance/:id', async (req, res) => {
     if (flag) {
         res.json({
             status: 200,
+            message: "Se ha agregado una asitencia"
+        });
+    } else {
+        res.json({
+            status: 400,
+            message: "Error interno al actualizar Evento"
+        });
+    }
+});
+
+router.post('/removeAsistance/:id', async (req, res) => {
+    const { id } = req.params;
+
+    let flag = await pool.query('UPDATE evento SET participantes = (participantes - 1) WHERE id = ?', [id]);
+    if (flag) {
+        res.json({
+            status: 200,
+            message: "Se ha quitado una asitencia"
+        });
+    } else {
+        res.json({
+            status: 400,
+            message: "Error interno al actualizar Evento"
+        });
+    }
+});
+
+router.post('/delete/:id', async (req, res) => {
+    const { id } = req.params;
+
+    let flag = await pool.query('DELETE FROM evento WHERE id = ?', [id]);
+    if (flag) {
+        pool.query('DELETE FROM asistencia WHERE id_evento = ?', [id]);
+        res.json({
+            status: 200,
             message: "Se ha eliminado correctamente el Evento"
         });
     } else {
@@ -181,10 +233,10 @@ router.post('/addAsistance/:id', async (req, res) => {
 
 });
 
-router.post('/delete/:id', async (req, res) => {
+router.post('/remove/user/:id', async (req, res) => { // remueve los eventos de es usuario
     const { id } = req.params;
 
-    let flag = await pool.query('DELETE FROM evento WHERE id = ?', [id]);
+    let flag = await pool.query('DELETE FROM evento WHERE creador = ?', [id]);
     if (flag) {
         res.json({
             status: 200,
