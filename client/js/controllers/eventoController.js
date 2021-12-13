@@ -165,7 +165,7 @@ const updateEvento = () => {
         let content = "";
         content += `
         <div class="alert ${color} alert-dismissible fade show" role="alert">
-        <strong>${res.message}</strong> 
+        ${res.message}
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>

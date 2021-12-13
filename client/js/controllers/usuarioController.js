@@ -33,7 +33,9 @@ const updateInfo = async() => {
         type: 'POST',
         url: url2 + '/usuario/update/info/' + userId,
         data: { nombre, ap_paterno, ap_materno }
-    }).done(res => res);
+    }).done(res => {
+        document.getElementById('txt_info').innerHTML = "Información personal actualizada, actualiza la página para ver los cambios.";
+    });
 }
 
 const updateUser = async() => {
@@ -49,9 +51,10 @@ const updateUser = async() => {
             data: { usuario, correo, keyword }
         }).done(res => {
             sessionStorage.setItem('user', usuario);
+            document.getElementById('txt_user').innerHTML = "Información de usuario actualizada, actualiza la página para ver los cambios.";
         });
     }else{
-        //alert de contraseñas no iguales
+        document.getElementById('txt_user').innerHTML = "Las contraseñas no coinciden.";
     }
 }
 

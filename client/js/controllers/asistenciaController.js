@@ -30,6 +30,7 @@ const addAsistance = async() => {
     let id_usuario = sessionStorage.getItem('userId');
     let id_evento = document.getElementById('event_id').value;
 
+    document.getElementById('al_conf_asis').style.display = "block";
     incrementAsistantces(id_evento);
 
     await $.ajax({
@@ -50,6 +51,7 @@ const removeAsistance = async() => {
     let id_usuario = sessionStorage.getItem('userId');
     let id_evento = document.getElementById('event_id').value;
 
+    document.getElementById('al_desconf_asis').style.display = "block";
     decreaseAsistantces(id_evento);
 
     await $.ajax({
