@@ -13,6 +13,7 @@ const findAllMines = async () => {
         let cont = $('#misEventos');
 
         if (listEventos != null) {
+            document.getElementById('al_usr_eve').style.display = "none";
             for (let i = 0; i < listEventos.length; i++) {
                 cont.append(
                     "<div class='card bg-light mb-3'>" +
@@ -74,6 +75,8 @@ const findAllMines = async () => {
                     "</div>"
                 );
             }
+        }else{
+            document.getElementById('al_usr_eve').style.display = "block";
         }
     });
 }

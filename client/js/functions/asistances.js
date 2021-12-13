@@ -15,8 +15,10 @@ const getMyAsistances = async() => {
         let n = 0;
         
         if(listAsistencias != null){
+            document.getElementById('al_asist').style.display = "none";
             for(let i = 0; i < listAsistencias.length; i++){
                 if(checkNotifications(today, listAsistencias[i].fecha_inicio)){
+                    document.getElementById('al_not').style.display = "none";
                     n++;
                     divNot.append(
                          "<div class='card bg-light mb-3 pb-0'>"+
@@ -29,6 +31,8 @@ const getMyAsistances = async() => {
                          "</div>"+
                          "</div>"
                     );
+                }else{
+                    document.getElementById('al_not').style.display = "block";
                 }
                 divAsis.append(
                     "<div class='card bg-light mb-3 pb-0'>" +
@@ -47,6 +51,8 @@ const getMyAsistances = async() => {
                     "</div>"
                 );
             }
+        }else{
+            document.getElementById('al_asist').style.display = "block";
         }
 
         if(n > 0){

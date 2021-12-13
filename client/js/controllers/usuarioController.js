@@ -70,10 +70,12 @@ const removeUser = async() => {
 }
 
 const removeUserEvents = async() => {
+    window.location.replace('../index.html');
+
     await $.ajax({
         type: 'POST',
         url: url + '/evento/remove/user/' + id
     }).done(res => {
-        window.location.replace('../index.html');
+        window.location.replace('../index.html');    
     });
 }
