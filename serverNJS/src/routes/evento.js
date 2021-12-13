@@ -40,7 +40,10 @@ router.get('/nui/:id', async (req, res) => { // GetAll
 
 router.get('/mine/:id', async (req, res) => { // GetEventsByUser
     const { id } = req.params;
-    let listEventos = await pool.query('SELECT * FROM evento WHERE creador = ?', [id]);
+    let fecha_actual = await actualDate();
+    await pool.query('UPDATE evento SET estado = 0 WHERE fecha_fin < ? AND creador = ?',[fecha_actual,id]);
+    await pool.query('UPDATE evento SET estado = 1 WHERE fecha_fin >= ? AND creador = ?',[fecha_actual,id]);
+    let listEventos = await pool.query('SELECT e.*, i.imagen FROM evento e LEFT JOIN imagen i ON e.id = i.id_evento WHERE e.creador = ? ORDER BY e.id', [id]);
 
     if (listEventos.length > 0) {
         res.json({
@@ -81,32 +84,48 @@ router.post('/create', async (req, res) => {
         hora_inicio, hora_fin, fecha_inicio, fecha_fin,
         descripcion
     };
-
     if (validateDate(fecha_inicio)) {
-        if (compareDate(fecha_fin, fecha_inicio)) {
-            if (compareTime(hora_fin, hora_inicio)) {
-                let flag = await pool.query('INSERT INTO evento SET ?', [evento]);
-                if (flag) {
-                    res.json({
-                        status: 200,
-                        message: "Se ha registrado correctamente el Evento",
-                        evento: evento
-                    });
+        if (compareDate(fecha_fin, fecha_inicio)){
+            if (sameDate(fecha_fin, fecha_inicio)) {
+                if (compareTime(hora_fin, hora_inicio)) {
+                    let flag = await pool.query('INSERT INTO evento SET ?', [evento]);
+                    if (flag) {
+                        res.json({
+                            status: 200,
+                            message: "Se ha registrado correctamente el Evento",
+                            evento: evento
+                        });
+                    } else {
+                        res.json({
+                            status: 400,
+                            message: "Error interno al registrar Evento",
+                            evento: evento
+                        });
+                    }
                 } else {
                     res.json({
-                        status: 400,
-                        message: "Error interno al registrar Evento",
+                        status: 300,
+                        message: "La hora de fin es menor a la hora de inicio",
                         evento: evento
                     });
                 }
             } else {
-                res.json({
-                    status: 300,
-                    message: "La hora de fin es menor o igual a la hora de inicio",
-                    evento: evento
-                });
+                let flag = await pool.query('INSERT INTO evento SET ?', [evento]);
+                    if (flag) {
+                        res.json({
+                            status: 200,
+                            message: "Se ha registrado correctamente el Evento",
+                            evento: evento
+                        });
+                    } else {
+                        res.json({
+                            status: 400,
+                            message: "Error interno al registrar Evento",
+                            evento: evento
+                        });
+                    }
             }
-        } else {
+        }else {
             res.json({
                 status: 300,
                 message: "La fecha de fin es menor a la fecha de inicio",
@@ -135,30 +154,47 @@ router.post('/update/:id', async (req, res) => {
 
     if (isTheCreator(id, creador)) {
         if (validateDate(fecha_inicio)) {
-            if (compareDate(fecha_fin, fecha_inicio)) {
-                if (compareTime(hora_fin, hora_inicio)) {
-                    let flag = await pool.query('UPDATE evento SET ? WHERE id = ?', [evento, id]);
-                    if (flag) {
-                        res.json({
-                            status: 200,
-                            message: "Se ha actualizado correctamente el Evento",
-                            evento: evento
-                        });
+            if (compareDate(fecha_fin, fecha_inicio)){
+                if (sameDate(fecha_fin, fecha_inicio)) {
+                    if (compareTime(hora_fin, hora_inicio)) {
+                        let flag = await pool.query('UPDATE evento SET ? WHERE id = ?', [evento, id]);
+                        if (flag) {
+                            res.json({
+                                status: 200,
+                                message: "Se ha actualizado correctamente el Evento",
+                                evento: evento
+                            });
+                        } else {
+                            res.json({
+                                status: 400,
+                                message: "Error interno al actualizar Evento",
+                                evento: evento
+                            });
+                        }
                     } else {
                         res.json({
-                            status: 400,
-                            message: "Error interno al actualizar Evento",
+                            status: 300,
+                            message: "La hora de fin es menor a la hora de inicio",
                             evento: evento
                         });
                     }
                 } else {
-                    res.json({
-                        status: 300,
-                        message: "La hora de fin es menor a la hora de inicio",
-                        evento: evento
-                    });
+                    let flag = await pool.query('UPDATE evento SET ? WHERE id = ?', [evento, id]);
+                        if (flag) {
+                            res.json({
+                                status: 200,
+                                message: "Se ha actualizado correctamente el Evento",
+                                evento: evento
+                            });
+                        } else {
+                            res.json({
+                                status: 400,
+                                message: "Error interno al actualizar Evento",
+                                evento: evento
+                            });
+                        }
                 }
-            } else {
+            }else {
                 res.json({
                     status: 300,
                     message: "La fecha de fin es menor a la fecha de inicio",
@@ -216,7 +252,7 @@ router.post('/removeAsistance/:id', async (req, res) => {
 
 router.post('/delete/:id', async (req, res) => {
     const { id } = req.params;
-
+    await pool.query('DELETE FROM imagen WHERE id_evento = ?',[id])
     let flag = await pool.query('DELETE FROM evento WHERE id = ?', [id]);
     if (flag) {
         pool.query('DELETE FROM asistencia WHERE id_evento = ?', [id]);
@@ -253,7 +289,6 @@ router.post('/remove/user/:id', async (req, res) => { // remueve los eventos de 
 
 async function isTheCreator(id, creador) {
     let flag = await pool.query("SELECT * FROM evento WHERE id = ? AND creador = ?", [id, creador]);
-    console.log(flag)
 
     if (flag.length > 0) return true;
     else return false;
@@ -273,5 +308,13 @@ function compareDate(dateTimeA, dateTimeB) {
 function compareTime(TimeA, TimeB) {
     if (moment(TimeA, 'hh:mm').isAfter(moment(TimeB, 'hh:mm'))) return true;
     else return false;
+}
+
+function sameDate(dateTimeA, dateTimeB) {
+    if (moment(dateTimeA,'YYYY/MM/DD').isSame(moment(dateTimeB,'YYYY/MM/DD'))) return true;
+    else return false;
+}
+function actualDate() {
+    return moment().format('YYYY-MM-DD');
 }
 module.exports = router;

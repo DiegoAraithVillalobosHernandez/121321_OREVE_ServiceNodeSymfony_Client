@@ -274,7 +274,35 @@
             </div>
             </form>
         </div>
+    </div>
+    <!---MODAL AGREGAR IMAGEN-->
+    <div>
+        <div class="modal fade" id="imagen" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content p-3">
+                    <h2>Agregar imagen<span class="fas fa-leaf"></span></h2>
+                    <form action="javascript:void(0);" onsubmit="addImagen();">
+                    <input type="hidden" name="i_eve_id" id="i_eve_id" >
+                    <div class="row mt-3 mb-2">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <input type="file" name="i_imagen" id="i_imagen" class="form-control" accept="image/png, image/jpeg" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="i_msg" class="text-center mt-3" style="width:100%;">
 
+                    </div>
+                    <div class="text-right">
+                        <button id="i_refresh" type="button" class="btn btn-primary" onclick="window.location.reload()" disabled="true"><span class="fas fa-sync-alt"></span> Refrescar</button>
+                        <button id="i_add" type="submit" class="btn btn-success"><span class="fas fa-plus"></span> Agregar</button>
+                        <button id="i-discard" type="button" class="btn btn-secondary" data-dismiss="modal"><span class="fas fa-ban"></span> Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    </div>
     <script src="../js/session/getSession.js"></script>
     <script src="../js/functions/urls.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>

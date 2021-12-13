@@ -34,3 +34,9 @@ CREATE TABLE asistencia(
 	id_usuario int REFERENCES usuario(id),
     id_evento int REFERENCES evento(id)
 );
+
+CREATE TABLE imagen(
+	id int AUTO_INCREMENT PRIMARY KEY NOT NULL,
+ 	imagen LongBlob NOt NULL,
+	id_evento int REFERENCES evento(id)
+);
